@@ -28,24 +28,6 @@ hs_err_pid*
 
 .metadata
 
-bin/
-
-tmp/
-
-*.tmp
-
-*.bak
-
-*.swp
-
-*~.nib
-
-local.properties
-
-.settings/
-
-.loadpath
-
-.recommenders
-
+/bin/
+/build/
 web.xml
