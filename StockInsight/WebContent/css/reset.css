@@ -1,0 +1,180 @@
+:root { 
+	--darkgreen: #212D3A; 
+	--gray: #AAAAAA; 
+	--yellow: #EDCD20; 
+	--lightblue: #cfd9df;
+}
+
+@font-face {
+	font-family: "nanum";
+	src: url("/StockInsight/asset/NanumGothic.ttf");
+}
+
+* {
+	outline: none;
+	padding: 0;
+	margin: 0;
+}
+
+.header {
+	padding-top: 0px;
+}
+
+body {
+	background-image: url('/StockInsight/asset/header_background.gif');
+	background-size: 100%;
+	background-attachment: fixed;
+}
+
+.front {
+	height: 104px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px;
+	border-width: 0.1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-color: var(--darkgreen);
+	background-color: var(--darkgreen);
+}
+
+.front ul {
+	margin: 60px 40px 0px 0px;
+	list-style: none;
+	text-align: right;
+	letter-spacing: 2px;
+}
+
+.front ul li {
+	display: inline;
+	font-family: "nanum";
+	font-size: 9.5pt;
+}
+
+.front ul li a {
+	text-decoration: none;
+	color: white;
+}
+
+.front ul li a:hover {
+	color: var(--gray);
+}
+
+.logo {
+	position: absolute;
+}
+
+.logo img {
+	content: url('/StockInsight/asset/header_logo.png');
+	width: 336px;
+	height: 148px;
+	float: left;
+	
+}
+
+nav {
+	border-bottom-style: solid;
+	border-width: 0px;
+	padding-top: 70px;
+	font-family: "nanum";
+	font-size: 55px;
+	text-align: center;
+	padding-bottom: 30px;
+}
+
+.menu_content {
+	font-family: "nanum";
+	text-align: center;
+	padding-bottom: 10px;
+}
+
+#content {
+	background-color: white;
+}
+
+footer {
+	font-family: "nanum";
+	font-size: 9.5px;
+	clear: both;
+	border-width: 0.1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-color: var(--lightblue);
+	height: 1.7em;
+	padding-top: 20px;
+	padding-left: 100px;
+	padding-bottom: 40px;
+	background-color: white;
+}
+
+.flag{
+	display : inline;
+}
+
+#content-rank {
+		position: absolute; 
+		margin-left: 380px; 
+		margin-top: 65px;
+	}
+
+/* For small screen */
+@media screen and (max-width: 900px) {
+	/* Nav container */
+	.flag{
+	display : block;
+}
+	body {
+		background-image: url('');
+		background-size: 100%;
+		background-attachment: fixed;
+		position : static;
+	}
+	#content-rank{
+		position:static;
+	}
+	.front{
+		position : static;
+	}
+	
+	
+	/* Menu */
+	.front ul {
+	    margin : 0px;
+		padding: 60px 40px 0px 0px;
+		list-style: none;
+		text-align: right;
+		letter-spacing: 2px;
+		background-color: var(--darkgreen);
+	}
+	
+	.front ul li {
+		margin : 0px;
+		flex-direction: column;
+		text-align: center;
+		width: 100%;
+	}
+	.front ul li a {
+		/* Fill in an entire line so that user can click on any space */
+		display: block;
+	}
+
+	/* When toggle button is clicked - active state */
+	.navbar__menu.active {
+		display: flex;
+	}
+	.logo {
+		width: 100%;
+		height: 80px;
+		background-color: var(--yellow);
+		position: static;
+		flex-direction: column;
+		padding: 15px 0px 15px 0px;
+	}
+	.logo img {
+		content: url('/StockInsight/asset/responsive_header_logo.png');
+		width: 100%;
+		height: 100%;
+		object-fit: scale-down;		
+	}
+	
+	
+}

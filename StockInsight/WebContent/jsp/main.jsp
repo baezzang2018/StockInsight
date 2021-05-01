@@ -46,16 +46,24 @@
 <script src="./js/myAjax.js"></script>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 <title>Stock Insight</title>
-<link rel="stylesheet" type="text/css" href="/StockInsight/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/StockInsight/css/reset.css" />
 
 
 <script type="text/javascript">
 	var n = 0;
 	var imgs = new Array("/StockInsight/asset/main_header_titleOn.png", "/StockInsight/asset/main_header_titleOff.png");
-	function rotate() {
-		document.images.slide.src = imgs[n];
-		(n == (imgs.length - 1)) ? n = 0 : n++;
-		setTimeout("rotate()", 800);
+	function rotate() {	
+		console.log(window.outerWidth + " " + window.innerWidth + " ");
+		  if($('.flag').css('display') === 'block') {
+			  document.images.slide.src = ""; //빈 소스 넣기	
+			  console.log("2씨발놈아"+$('.flag').css('display'));
+		   } 
+		  else {			  
+			   (n == (imgs.length - 1)) ? n = 0  : n = 1;	
+			   document.images.slide.src = imgs[n];
+			   console.log("3씨발놈아");
+		   }
+		  setTimeout("rotate()", 1000);	// rotate() 호출 계속적으로 
 	}
 </script>
 <script type="text/javascript">
@@ -116,7 +124,9 @@
 </script>
 </head>
 
-<body onload='rotate()'>
+<body>
+
+<div class="flag"/>
 
 	<!-- 차트 그리기 -->
 	<script type="text/javascript"
@@ -337,18 +347,17 @@
 			loadHiddenRank();
 		}, 1000);
 		window.onload = function(){
+			rotate();
 			loadShowRank();
 			loadHiddenRank();
 		}
 	</script>
 	<div class="front">
 		<div class="logo">
-			<a href="/StockInsight/jsp/main.jsp"><img src="/StockInsight/asset/header_logo.png"
-				style="width: 336px; height: 148px; float: left;"></a>
+			<a href="/StockInsight/jsp/main.jsp"><img/></a>
 		</div>
 
-		<div id="content-rank"
-			style="position: absolute; margin-left: 380px; margin-top: 65px;">
+		<div id="content-rank">
 			<dl id="rank-list">
 				<dd>
 					<ol id="showRank" style="font-family: 'nanum';" >
@@ -406,7 +415,7 @@
 		%>
 		<ul>
 			<li><a href="login.jsp">로그인</a></li> &nbsp; &nbsp;
-			<li><a id="yellow" href="/StockInsight/jsp/main.jsp">메인화면</a></li> &nbsp; &nbsp;
+			<li><a style="color : var(--yellow);" href="/StockInsight/jsp/main.jsp">메인화면</a></li> &nbsp; &nbsp;
 			<li><a href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp; &nbsp;
 			<li><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li> &nbsp;
 			&nbsp;
@@ -438,7 +447,7 @@
 			<div class="kos_char">KOSPI 차트</div>
 			<div class="kod_char">KOSDAQ 차트</div>
 		</div>-->
-		<div class="main">
+	<!--	<div class="main">
 			<table style="width: 90%; margin-left: auto; margin-right: auto; ">
 				<tr >
 					<td style="font-size:20pt">
@@ -466,7 +475,7 @@
 						<div id="kosdaq_pre_data" style="font-size:15pt"></div>
 					</td>					
 				</tr>
-				<tr>
+				 <tr>
 				<td style="padding:20px;">
 					<a href="https://search.naver.com/search.naver?where=news&sm=tab_jum&query=%EC%BD%94%EC%8A%A4%ED%94%BC" 
             	target="_blank" style="text-decoration: underline;  color: gray; ">
@@ -479,7 +488,7 @@
 					</td>
 				</tr>
 			</table>
-		</div>
+		</div>-->
 
 	</section>
 
