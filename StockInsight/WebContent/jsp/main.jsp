@@ -53,15 +53,12 @@
 	var n = 0;
 	var imgs = new Array("/StockInsight/asset/main_header_titleOn.png", "/StockInsight/asset/main_header_titleOff.png");
 	function rotate() {	
-		console.log(window.outerWidth + " " + window.innerWidth + " ");
 		  if($('.flag').css('display') === 'block') {
 			  document.images.slide.src = ""; //빈 소스 넣기	
-			  console.log("2씨발놈아"+$('.flag').css('display'));
 		   } 
 		  else {			  
 			   (n == (imgs.length - 1)) ? n = 0  : n = 1;	
 			   document.images.slide.src = imgs[n];
-			   console.log("3씨발놈아");
 		   }
 		  setTimeout("rotate()", 1000);	// rotate() 호출 계속적으로 
 	}
