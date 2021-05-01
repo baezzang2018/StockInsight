@@ -430,7 +430,7 @@
 	<section id="content">
 
 		<nav>
-			실시간 차트<br /> <img class="bar" src="bar.jpg"
+			실시간 차트<br /> <img class="bar" src="/StockInsight/asset/body_titleUnderBar.jpg"
 				style="padding-top: 20px; width: 121px; height: 10px; float: center;">
 		</nav>
 
