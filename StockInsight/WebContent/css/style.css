@@ -1,1 +1,23 @@
-@charset "EUC-KR";
+@font-face {
+   font-family: "nanum";
+   src: url("/StockInsight/asset/NanumGothic.ttf");
+}
+
+
+
+* {
+   outline:none;
+   padding: 0;
+   margin: 0;
+}
+
+
+.header {
+   padding-top: 0px;
+}
+
+body {
+   background-image: url("/StockInsight/asset/header_background.gif");
+   background-size: 100%;
+   background-attachment: fixed;
+}
