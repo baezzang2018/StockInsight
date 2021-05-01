@@ -1,0 +1,83 @@
+.main {
+   font-family: "nanum";
+   text-align: center;
+   padding-bottom: 100px;
+   background-color: white;
+   color : black;
+}
+.responsive_main {
+	display: none;
+}
+nav {
+	background-color: white;
+	border-bottom-style: solid;
+	border-width: 0px;
+	padding-top: 70px;
+	font-family: "nanum";
+	font-size: 55px;
+	color: black;
+	text-align: center;
+	padding-bottom: 30px;
+}
+
+#main_table{
+	width: 90%; 
+	margin-left: auto; 
+	margin-right: auto; 
+}
+
+#responsive_table{
+	width: 90%; 
+	margin-left: auto; 
+	margin-right: auto; 
+}
+
+#kospi_chart{
+	border: 1px solid black; 
+	width:400px; 
+	height: 300px;
+	margin-left: auto; 
+	margin-right: auto; 
+	margin-top:20px; 
+	margin-bottom:10px;
+}
+#kosdaq_chart{
+	border: 1px solid black; 
+	width:400px; 
+	height: 300px;
+	margin-left: auto; 
+	margin-right: auto; 
+	margin-top:20px; 
+	margin-bottom:10px;
+}
+
+/* For small screen */
+@media screen and (max-width: 1000px) {
+
+	.main{
+		display : none;
+	}
+	
+	.responsive_main{
+		display: inline;
+		width: 90%; 
+		margin-left: auto; 
+		margin-right: auto; 
+	}
+	
+	#responsive_table tr,
+    #responsive_table th,
+    #responsive_table td {
+        display: block;
+        /* table와 하위 요소들의 display 속성을 변경합니다. */
+         
+    }
+ 
+    #responsive_table th,
+    #responsive_table td {
+       width: 100%;
+       border-top: none;
+       border-bottom: none;
+    }
+	 
+}

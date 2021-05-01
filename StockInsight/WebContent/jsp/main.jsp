@@ -6,6 +6,7 @@
 <script src="./js/myAjax.js"></script>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 <title>Stock Insight</title>
+<link rel="stylesheet" type="text/css" href="/StockInsight/css/main.css" />
 <jsp:include page="/jsp/header.jsp" flush="false">
        <jsp:param name="currentPage" value="${'/StockInsight/jsp/main.jsp'}" />
 </jsp:include>
@@ -238,35 +239,29 @@
 		}
 	</script>			
 		
-	<section id="content">
+	<section style="color : white;">
 
 		<nav>
 			실시간 차트<br /> <img class="bar" src="/StockInsight/asset/body_titleUnderBar.jpg"
 				style="padding-top: 20px; width: 121px; height: 10px; float: center;">
 		</nav>
 
-		<!-- <div class="main">
-			<div class="kos_char">KOSPI 차트</div>
-			<div class="kod_char">KOSDAQ 차트</div>
-		</div>-->
-	<!--	<div class="main">
-			<table style="width: 90%; margin-left: auto; margin-right: auto; ">
-				<tr >
-					<td style="font-size:20pt">
+		<div class="main">
+			 <table id= "main_table">
+				<tr>
+					<th style="font-size:20pt">
 						<div id="kospi_name" ><b> KOSPI 차트 </b></div>
-					</td>
-					<td style="font-size:20pt">
+					</th>
+					<th style="font-size:20pt">
 						<div id="kosdaq_name"><b> KOSDAQ 차트 </b></div>
-					</td>
+					</th>
 				</tr>
 				<tr >
 					<td >
-					<div id="kospi_chart"
-							style="border: 1px solid black; width:400px; height: 300px;margin-left: auto; margin-right: auto; margin-top:20px; margin-bottom:10px;"></div>
+					<div id="kospi_chart"/>
 					</td>
 					<td >
-						<div id="kosdaq_chart"
-							style=" border: 1px solid black; width:400px; height: 300px;margin-left: auto; margin-right: auto; margin-top:20px; margin-bottom:10px;"></div>
+						<div id="kosdaq_chart"/>
 					</td>					
 				</tr>
 				<tr>
@@ -290,7 +285,47 @@
 					</td>
 				</tr>
 			</table>
-		</div>-->
+		</div>
+		
+		<div class="responsive_main">
+			 <table id= "responsive_table">
+            <tr>
+               <th style="font-size:20pt; color: black;">
+                  <div id="kospi_name" ><b> KOSPI 차트 </b></div>
+               </th>
+               <td>
+               <div id="kospi_chart"/>
+               </td>
+               <td>
+                  <div id="kospi_pre_data" style="font-size:15pt" > </div>
+               </td>
+                <td style="text-align: center; margin-bottom: 60px" >
+               <a href="https://search.naver.com/search.naver?where=news&sm=tab_jum&query=%EC%BD%94%EC%8A%A4%ED%94%BC" 
+               target="_blank" style="text-decoration: underline;  color: gray; ">
+               <b style="font-size: 20px; margin-top: 25%;"> 📢 코스피 관련 이슈가 궁금하신가요?</b></a>               
+               </td>               
+            </tr>
+            
+            <tr>
+               <th style="font-size:20pt; color: black;">
+                  <div id="kosdaq_name"><b> KOSDAQ 차트 </b></div>
+               </th>               
+               <td>
+                  <div id="kosdaq_chart"/>
+               </td>             
+               <td>
+                  <div id="kosdaq_pre_data" style="font-size:15pt"></div>
+               </td>   
+                <td style="text-align: center; margin-bottom: 70px" >
+               <a href="https://search.naver.com/search.naver?sm=tab_hty.top&where=news&query=%EC%BD%94%EC%8A%A4%EB%8B%A5&oquery=%EC%BD%94%EC%8A%A4%ED%94%BC&tqi=U9nm2lprvxZsshIjg5CssssssX0-066341" 
+               target="_blank" style="text-decoration: underline; color: gray; ">
+               <b style="font-size: 20px; margin-top: 25%;"> 📢 코스닥 관련 이슈가 궁금하신가요?</b></a>               
+               </td>
+
+            </tr>
+           
+         </table>
+      </div>
 	</section>
 
 	<jsp:include page="/jsp/footer.jsp"/>
