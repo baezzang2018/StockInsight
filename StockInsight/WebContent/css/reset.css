@@ -26,22 +26,22 @@ body {
 	background-attachment: fixed;
 }
 
-.front {
-	
+.front {	
 	margin: 0px 0px 0px 0px;
 	padding: 0px;
 	border-width: 0.1px;
 	border-top-style: solid;
 	border-bottom-style: solid;
 	border-color: var(--darkgreen);
-	background-color: var(--darkgreen);
+	background-color: var(--darkgreen);	
 }
 
 .front ul {
 	margin: 60px 40px 0px 0px;
 	list-style: none;
 	text-align: right;
-	letter-spacing: 2px;
+	letter-spacing: 2px;	
+	margin-bottom: 15px; 
 }
 
 .front ul li {
