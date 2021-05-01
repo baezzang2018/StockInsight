@@ -6,7 +6,10 @@
 <script src="./js/myAjax.js"></script>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 <title>Stock Insight</title>
-<jsp:include page="/jsp/header.jsp"/>
+<jsp:include page="/jsp/header.jsp" flush="false">
+       <jsp:param name="currentPage" value="${'/StockInsight/jsp/main.jsp'}" />
+</jsp:include>
+
 </head>
 
 <body>

@@ -110,46 +110,52 @@
 			value="0">
 		
 		<!-- value 체크값을 위함 -->
+		<ul id="success_Login">
 		<%
-			if (session.getAttribute("ID") == null) {
+			if (session.getAttribute("ID") != null) {
 			// 세션 존재
 		%>
-		<ul id="success_Login">
-			<li>
 				<%
-					String name = (String) session.getAttribute("NAME");
-				out.println(" <b>" + name + "</b> 님 환영합니다. <a style=\"display:inline;\" href=\"javascript:popupOpen();\"/><b>🔔</b></a>");
+				String currentPage = (String)request.getParameter("currentPage"); 
+				String pageUrl[] = {"/Stock_Insigh/sortPredict","/Stock_Insigh/doLogout","/StockInsight/jsp/main.jsp"
+						,"/Stock_Insigh/doStock","/Stock_Insigh/doSearchInterest","mypage.jsp",
+						"/Stock_Insigh/postList?pageIndex=1"};
+				String menuName[] = {"🥇예측순위","로그아웃","메인화면","종목조회","관심종목","마이페이지","문의하기"};
+				String name = (String) session.getAttribute("NAME");
+				out.print("<li> <b>" + name + 
+						"</b> 님 환영합니다. <a style=\"display:inline;\" href=\"javascript:popupOpen();\" /><b>🔔</b></a></li></br> ");
+				for(int i=0;i<pageUrl.length;i++){
+					out.print("<li><a href=\"" + pageUrl[i] + "\"" );
+					if(pageUrl[i].equals(currentPage)){
+						out.print(" style=\"color : var(--yellow);\" ");
+					}
+					out.println(">"+menuName[i]+"</a></li> &nbsp; &nbsp;");
+				}
+		
 				%>
-			</li>
-			</br> 			
+						
 			<!-- 알림확인 자리 나중에 확인 후 삭제할 주석 -->
-			<li><a href="/Stock_Insigh/sortPredict">🥇예측순위</a></li>&nbsp;&nbsp;&nbsp;
-			<li><a href="/Stock_Insigh/doLogout"> 로그아웃
-			</a></li> &nbsp; &nbsp;
-			<li><a style="color : var(--yellow);" href="/StockInsight/jsp/main.jsp">메인화면</a></li>
-			&nbsp; &nbsp;
-			<li><a href="/Stock_Insigh/doStock">종목조회</a></li>
-			&nbsp; &nbsp;
-			<li><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li>
-			&nbsp; &nbsp;
-			<li><a href="mypage.jsp">마이페이지</a></li> &nbsp;
-			&nbsp;
-			<li><a
-				href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
+			
 			</br>
-		</ul>
+		
 		<%
-			} else {
-		// 세션존재하지 않음
+			} else { // 세션존재하지 않음
+				String currentPage = (String)request.getParameter("currentPage"); 
+				String pageUrl[] = {"login.jsp","/StockInsight/jsp/main.jsp","/Stock_Insigh/doStock"
+						,"/Stock_Insigh/doSearchInterest","mypage.jsp","/Stock_Insigh/postList?pageIndex=1"};
+				String menuName[] = {"로그인","메인화면","종목조회","관심종목","마이페이지","문의하기"};
+				
+				for(int i=0;i<pageUrl.length;i++){
+					out.print("<li><a href=\"" + pageUrl[i] + "\"" );
+					if(pageUrl[i].equals(currentPage)){
+						out.print(" style=\"color : var(--yellow);\" ");
+					}
+					out.println(">"+menuName[i]+"</a></li> &nbsp; &nbsp;");
+				}
+				
+		
 		%>
-		<ul>
-			<li><a href="login.jsp">로그인</a></li> &nbsp; &nbsp;
-			<li><a style="color : var(--yellow);" href="/StockInsight/jsp/main.jsp">메인화면</a></li> &nbsp; &nbsp;
-			<li><a href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp; &nbsp;
-			<li><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li> &nbsp;
-			&nbsp;
-			<li><a href="mypage.jsp">마이페이지</a></li> &nbsp; &nbsp;
-			<li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
+		
 		</ul>
 
 		<%
