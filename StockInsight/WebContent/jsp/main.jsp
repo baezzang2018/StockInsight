@@ -46,7 +46,7 @@
 <script src="./js/myAjax.js"></script>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 <title>Stock Insight</title>
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/StockInsight/css/style.css" />
 
 
 <script type="text/javascript">

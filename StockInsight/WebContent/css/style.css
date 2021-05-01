@@ -17,7 +17,813 @@
 }
 
 body {
-   background-image: url("/StockInsight/asset/header_background.gif");
+   background-image: url('/StockInsight/asset/header_background.gif');
    background-size: 100%;
    background-attachment: fixed;
+}
+
+.front {
+   height: 104px;
+   margin: 0px 0px 0px 0px;
+   padding: 0px;
+   border-width: 0.1px;
+   border-top-style: solid;
+   border-bottom-style: solid;
+   border-color: #212D3A;
+   background-color: #212D3A;
+}
+
+.front ul {
+   margin: 60px 40px 0px 0px;
+   list-style: none;
+   text-align: right;
+   letter-spacing: 2px;
+}
+
+.front ul li {
+   display: inline;
+   font-family: "nanum";
+   font-size: 9.5pt;
+}
+
+.front ul li a {
+   text-decoration: none;
+   color: white;
+}
+
+.front ul li a:hover {
+   color: #AAAAAA;
+}
+/**jh okaylogin ul, li **/
+#okaylogin_ul {
+   margin: 30px;;
+   list-style: none;
+   text-align: right;
+   letter-spacing: 2px;
+}
+#okaylogin_li{
+   text-decoration: none;
+   color: white;
+}
+#yellow {
+   /**-11.10 yellow plus**/
+   color: #E8CE48;
+}
+
+#red {
+   color: red;
+   font-size: 9.5pt;
+   font-family: "nanum";
+}
+
+nav {
+   border-bottom-style: solid;
+   border-width: 0px;
+   padding-top: 70px;
+   font-family: "nanum";
+   font-size: 55px;
+   text-align: center;
+   padding-bottom: 30px;
+}
+
+.menu_content {
+   font-family: "nanum";
+   text-align: center;
+   padding-bottom: 10px;
+}
+
+#content {
+   background-color: #ffffff;
+}
+
+footer {
+   font-family: "nanum";
+   font-size: 9.5px;
+   clear: both;
+   border-width: 0.1px;
+   border-top-style: solid;
+   border-bottom-style: solid;
+   border-color: #cfd9df;
+   height: 1.7em;
+   padding-top: 20px;
+   padding-left: 100px;
+   padding-bottom: 40px;
+   background-color: #ffffff;
+}
+
+.logo {
+   position: absolute;
+}
+
+/** login **/
+.welcome {
+   font-size: 30px;
+   text-align: center;
+}
+
+a {
+   color: #333;
+   text-decoration: none;
+}
+
+.inner_login {
+   left: 50%;
+   top: 100%;
+}
+
+.inner_search {
+   
+   top: 100%;
+}
+
+.login_start {
+   width: 320px;
+   margin: auto;
+}
+
+.login_show {
+   position: absolute;
+   width: 0;
+   height: 0;
+   overflow: hidden;
+   line-height: 0;
+   text-indent: -9999px;
+}
+
+body, input, select, td, textarea, th {
+   font-size: 13px;
+   line-height: 1.5;
+   -webkit-font-smoothing: antialiased;
+}
+
+fieldset, img {
+   border: 0;
+}
+
+.login_start .box_login {
+   border: 1px solid #ddd;
+   border-radius: 3px;
+   background-color: #fff;
+   box-sizing: border-box;
+}
+
+.login_start .inp_text {
+   position: relative;
+   width: 100%;
+   margin: 0;
+   padding: 18px 19px 19px;
+   box-sizing: border-box;
+}
+
+.login_start .inp_text {
+   border-top: 1px solid #ddd;
+}
+
+.inp_text input {
+   display: block;
+   width: 100%;
+   height: 100%;
+   font-size: 13px;
+   color: #000;
+   border: none;
+   outline: 0;
+   -webkit-appearance: none;
+   background-color: transparent;
+}
+
+.btn_login {
+   margin: 20px 0 0;
+   width: 100%;
+   height: 48px;
+   border-radius: 3px;
+   font-size: 16px;
+   color: #fff;
+   background: linear-gradient(to right, #B06AB3, #4568DC);
+   border-color: white;
+}
+
+.login_append {
+   overflow: hidden;
+   padding: 15px 0 0;
+}
+
+.inp_chk {
+   display: inline-block;
+   position: relative;
+   margin-bottom: -1px;
+}
+
+.login_append .inp_chk {
+   float: left;
+}
+
+.inp_chk .inp_radio {
+   position: absolute;
+   z-index: -1;
+   top: 0;
+   left: 0;
+   width: 18px;
+   height: 18px;
+   border: 0;
+}
+
+.inp_chk .lab_g {
+   display: inline-block;
+   margin-right: 19px;
+   color: #909090;
+   font-size: 13px;
+   line-height: 19px;
+   vertical-align: top;
+}
+
+.inp_chk .ico_check {
+   display: inline-block;
+   width: 18px;
+   height: 18px;
+   margin: 1px 4px 0 0;
+   background-position: -60px 0;
+   color: #333;
+}
+
+.inp_chk .txt_lab {
+   vertical-align: top;
+}
+
+.login_append .txt_find {
+   float: right;
+   color: #777;
+}
+
+.login_under {
+   margin-top: 15px;
+   font-family: "nanum";
+   padding-bottom: 15px;
+}
+
+.join {
+   margin-left: 105px;
+}
+
+/** Hailie _ qna **/
+.page_a{
+    border-radius: 3px;
+    background: #aaaa;
+    padding: 8px;
+    margin: 2px 10px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+table.questionTable {
+   border-collapse: separate;
+   border-spacing: 1px;
+   text-align: left;
+   line-height: 1.5;
+   border-top: 1px solid #ccc;
+   margin: 20px 10px;
+}
+
+table.questionTable tr {
+   width: 50px;
+   padding: 10px;
+   font-weight: bold;
+   vertical-align: top;
+   border-bottom: 1px solid #ccc;
+}
+
+table.questionTable td {
+   padding: 15px 5px;
+   vertical-align: middle;
+   border-bottom: 1px solid #ccc;
+   font-size: 20px;
+}
+
+.question_content {
+   font-family: "nanum";
+}
+
+.btn_question_submit {
+   font-weight: bold;
+   margin: 15 0 10 0;
+   width: 90px;
+   height: 24px;
+   border-radius: 3px;
+   font-family: "nanum";
+   font-size: 14px;
+   color: #fff;
+   background: linear-gradient(to right, #B06AB3, #4568DC);
+   background: -webkit-linear-gradient(to right, #B06AB3, #4568DC);
+   border: none;
+}
+
+.btn_question_list {
+   font-weight: bold;
+   margin: 15px 6px 10px 6px;
+   padding: 4px 18px 4px 18px;
+   border-radius: 3px;
+   font-family: "nanum";
+   font-weight: normal;
+   font-size: 14px;
+   color: #000;
+   background-color: #aaaa;
+   border: none;
+}
+
+table.questionTable .button_table {
+   border-bottom: 0px;
+   text-align: end;
+}
+
+table.questionTable .title {
+   height: 40px;
+   font-size: 13px;
+   font-family: "nanum";
+}
+
+table .questionTable .content {
+   font-family: "nanum";
+}
+
+.qna_table {
+   margin-top: 30px;
+   font-family: "nanum";
+   border-collapse: collapse;
+   width: 80%;
+   margin-bottom: 1rem;
+   text-align: center;
+   color: #212529;
+}
+
+.qna_table th {
+   font-size: 14pt;
+   padding: 0.75rem;
+   vertical-align: top;
+   border-top: 1px solid #dee2e6;
+   background-color: #eeee
+}
+
+.qna_table td {
+   font-size: 12pt;
+   padding: 0.75rem;
+   vertical-align: top;
+   border-top: 1px solid #dee2e6;
+}
+
+.qna_table thead th {
+   vertical-align: bottom;
+   border-bottom: 2px solid #dee2e6;
+}
+
+.qna_table tbody+tbody {
+   border-top: 2px solid #dee2e6;
+}
+
+.btn_question {
+   position: relative;
+   left: 33%;
+   top: 15px;
+   padding: 7 17 7 17;
+   border-radius: 3px;
+   font-family: "nanum";
+   font-weight: bold;
+   font-size: 13px;
+   background-color: #aaaa;
+}
+
+.btn_list {
+   padding: 7px 18px;
+   border-radius: 3px;
+   font-family: "nanum";
+   font-weight: bold;
+   font-size: 13px;
+   background-color: #aaaa;
+}
+
+.btn_answer {
+   padding: 7 17 7 17;
+   border-radius: 3px;
+   font-family: "nanum";
+   font-weight: bold;
+   font-size: 13px;
+   background-color: #aaaa;
+}
+
+.question_content_table {
+   margin: 30px 5px 60px 5px;
+   font-family: "nanum";
+   border-collapse: collapse;
+   width: 80%;
+   margin-bottom: 1rem;
+   text-align: center;
+}
+
+.question_content_table .cont th {
+   padding: 30px;
+   border: 1px solid #ccc;
+   font-size: 14pt;
+   background-color: #eeee;
+}
+
+.question_content_table .cont td {
+   padding: 30px;
+   border: 1px solid #ccc;
+   font-size: 12pt;
+}
+
+.button_table_content {
+   border: none;
+}
+
+.button_table_content td {
+   text-align: end;
+   border: none;
+}
+
+#answer {
+   margin-top: 35px;
+}
+
+.answer_button {
+   width: 15%;
+   height: 28px;
+   border-radius: 3px;
+   font-family: "nanum";
+   font-weight: bold;
+   font-size: 13px;
+   color: #fff;
+   background: linear-gradient(to right, #B06AB3, #4568DC);
+   background: -webkit-linear-gradient(to right, #B06AB3, #4568DC);
+   border: none;
+}
+
+.page tr td button {
+   margin-top: 30px;
+   border: none;
+   margin-right: 10px;
+   margin-left: 10px;
+   padding: 10 10 10 10;
+   font-family: "nanum";
+   font-weight: bold;
+   font-size: 13px;
+}
+
+.reply {
+   background-color: #eeeeff;
+}
+/** jh join css **/
+.table {
+   font-family: "nanum";
+   font-size: 25px;
+   width: 400px;
+   height: 200px
+}
+
+.check {
+   margin-left: 10px;
+   width: 80px;
+   color: white;
+   text-align: center;
+   background: #4948FF;
+   border-radius: 5px;
+   border-color: white;
+}
+
+.okayjoin {
+   width: 90px;
+   color: white;
+   font-size: 15px;
+   text-align: center;
+   background: linear-gradient(to right, #B06AB3, #4568DC);
+   border-radius: 5px;
+   border-color: white;
+}
+
+.btn_answer {
+   font-weight: bold;
+   margin: 17 0 10 0;
+   padding: 7 17 7 17;
+   width: 90px;
+   height: 29px;
+   border-radius: 3px;
+   font-family: "nanum";
+   font-size: 14px;
+   color: #fff;
+   background: linear-gradient(to right, #B06AB3, #4568DC);
+   background: -webkit-linear-gradient(to right, #B06AB3, #4568DC);
+   border: none;
+}
+
+/**jh find id**/
+.find_idtable {
+   font-family: "nanum";
+   font-size: 25px;
+   width: 250px;
+   height: 100px;
+}
+
+.findid {
+   width: 90px;
+   color: white;
+   font-size: 15px;
+   text-align: center;
+   background: linear-gradient(to right, #B06AB3, #4568DC);
+   border-radius: 5px;
+   border-color: white;
+   margin-bottom: 10px;
+}
+
+/** mypage by sunga**/
+.btn_collection {
+   position: relative;
+   left: 20%;
+   top: 15px;
+   padding: 7 17 7 17;
+   border-radius: 3px;
+   font-family: "nanum";
+   font-weight: bold;
+   font-size: 13px;
+   background-color: white;
+   color:#E8CE48;
+   outline-color:#E8CE48;
+   outline-style: default;
+}
+
+/**yeonhee _ interest**/
+
+.updown{
+	width: 100px;
+	height : 40px;
+	margin-left : 5px;
+	
+    border: 1px solid white;
+   
+    background : white;
+	
+	color: black;
+	font-size : 14px;
+}
+
+
+.interest {
+   margin:auto;
+   width:800px;
+}
+
+.like{
+	width: 250px;
+	height : 250px;
+	
+	margin-bottom: 115px;
+    float:left;
+    margin-left:100px;
+   
+    
+    border: 5px;
+    border-style: solid;
+    
+    border-image: linear-gradient(to top, #B06AB3, #4568DC);
+    border-image: linear-gradient(to bottom, #B06AB3, #4568DC);
+    border-image: linear-gradient(to left, #B06AB3, #4568DC);
+    border-image: linear-gradient(to right, #B06AB3, #4568DC);
+    
+    
+    border-image-slice: 1;
+    background : white;
+}
+
+.alllike{
+	 margin: auto;
+	 height: 100%;
+}
+
+.like button{
+	width: 250px;
+	height : 250px;
+	background-color : white;
+	border-color:white;
+	border : 0.5px ;
+}
+
+.like button:hover{
+	background: linear-gradient(to right, #B06AB3, #4568DC);
+    color: white;
+}
+
+.today{
+	font-size: 15pt;
+}
+
+.inn{
+	 margin:auto;
+	 diplay: inline-block;
+	 width : 700px;
+}
+
+.inn h1{
+	display:inline;
+}
+
+.interest ul {
+    list-style-type: none;
+    background-color: #ffffff;
+    overflow: scroll;
+    overflow-x: hidden;
+    border: #ffffff;
+  }
+  
+  .interest li a {
+    display: block;
+    color: #000; 
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color on hover */
+  .interest li a:hover {
+    background: linear-gradient(to right, #B06AB3, #4568DC); 
+    color: white;
+  }
+
+  .interest li a:active {
+    background-color: #ff8080;
+    color: white;
+  }
+
+  .interst_stock {
+   top: 100%;
+}
+
+  .search{
+   border: 5px solid #E8CE48;
+   background: #ffffff;
+  
+ }
+ 
+   .search_inner{
+   border: 5px solid #E8CE48;
+   background: #ffffff;
+   width: 600px;
+   height: 30px;
+    
+   
+  
+ } 
+   .search_button{
+   border: 2px solid #E8CE48;
+   background: #E8CE48;
+   color: #ffffff;
+   margin-left: -45px;
+ }
+
+  .a{
+   width: 40%;
+  }
+
+  .search input{
+    font-size:22px;
+    width: 93%;
+    padding: 2px;
+    border: 10px;
+    outline:none;
+    float: left;
+  }
+
+  .search button{
+    width:50px;
+    height: 40px;
+    border:0px;
+    background: #E8CE48;
+    color: #ffffff;
+    float: right;
+    margin-bottom: 50px; 
+  }
+  
+  .search button:active {
+    background-color: #ff8080;
+    border: #ff8080;
+    color: white;
+  }
+
+  .interbtn{
+    border: none;
+    outline: none;
+    background: #ffffff;
+  }
+  
+  .interbtn li a:visited{
+     background: linear-gradient(to right, #B06AB3, #4568DC); 
+    color: white;
+  }
+  
+  .resultPrice{
+    margin-left: 600px;
+     width:300px;height:300px;
+   border:3px solid transparent;
+   border-color:lightgreen;
+  }
+  
+  
+  .resultBtn{
+    position:absolute;
+     top: 620px;
+     right:1000px;
+     
+  }
+  
+   .resultKind{
+    margin-left: 600px;
+     width:300px;height:100px;
+   border:3px solid transparent;
+   border-color:lightgreen;
+   font-size:30px;
+   font-weight:bold;
+  }
+  
+  .resultChart{
+     position:absolute;
+     top: 577px;
+     right:400px;
+     width:500px;height:400px;
+   border:3px solid transparent;
+   border-color:lightgreen;
+   font-size:30px;
+   font-weight:bold;
+  }
+  
+  .srch tr{
+   font-weight: bold;
+   border-bottom: 1px solid #ccc;
+   border-top: 1px solid #ccc;
+}
+
+
+ .srch th{
+    font-size : 15pt;
+    color: #fff;
+    border-bottom: 1px solid #ccc;
+    background: linear-gradient(to right, #B06AB3, #4568DC);
+ }
+
+ .srch td{
+   text-align: center;
+   padding: 15px 12px;
+   vertical-align: middle;
+   border-bottom: 1px solid #ccc;
+ }
+
+ .srch td input{
+   font-size : 15pt;
+   background-color: #ffffff;
+   border:none;
+   border-right:0px; 
+   border-top:0px; 
+   border-left:0px; 
+   border-bottom:0px;
+
+ }
+
+ table .srch{
+    border : 1px solid #ccc;
+ }
+
+ .result_count{
+    margin-bottom : 30px;
+    font-size : 13pt;
+ }
+/** jh main **/
+.main {
+   font-family: "nanum";
+   text-align: center;
+   padding-bottom: 100px;
+}
+/**jh search_final css**/
+.final_content{
+   font-family: "nanum";
+   padding-bottom: 500px;
+}
+.left_final{
+   padding: 10px;
+   margin-left: 15%;   
+    float: left;
+    width: 30%;
+    height: 450px;
+}
+.right_final{
+   border: 1px solid black;
+    float: left;
+    margin-left: 5%;  
+    width: 30%;
+    height: 450px;
+}
+.price{   
+   padding: 10px;
+   margin-top: 20px;
+   font-size : 18px;
+}
+.realtime_price{
+   padding: 10px;
+   background-color: #EAEAEA;
+   border: 1px solid #EAEAEA;
+   margin-top: 25px;
+   font-size : 18px;
 }
