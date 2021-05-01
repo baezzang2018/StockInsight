@@ -151,14 +151,14 @@ public class LoginDAO {
 
 	public static ResultSet findUserIndex(Connection con, String user_id) {
 
-		String sqlinter = "SELECT user_index From Stockinsight.User WHERE user_id ="; // È¸»ç¸í¿¡ ÀÏÄ¡ÇÏ´Â ºĞ¾ß ¸®ÅÏ 
+		String sqlinter = "SELECT user_index From Stockinsight.User WHERE user_id ="; // íšŒì‚¬ëª…ì— ì¼ì¹˜í•˜ëŠ” ë¶„ì•¼ ë¦¬í„´ 
 		Statement st;
 		try {
 
 			st = con.createStatement();
 			System.out.println("user_id:" + user_id);
 			if (st.execute(sqlinter + "'" + user_id + "'")) {
-				return st.getResultSet(); // field ³Ñ±è 
+				return st.getResultSet(); // field ë„˜ê¹€ 
 
 			}
 

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class StockDAO {
-	public static ResultSet findCompany(Connection con, String field) { // ¼±ÅÃÇÑ ºĞ¾ßÀÇ È¸»ç Ã£´Â ÇÔ¼ö 
+	public static ResultSet findCompany(Connection con, String field) { // ì„ íƒí•œ ë¶„ì•¼ì˜ íšŒì‚¬ ì°¾ëŠ” í•¨ìˆ˜ 
 
 		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_field =";
 		Statement st;
@@ -28,7 +28,7 @@ public class StockDAO {
 		return null;
 	}
 
-	public static ResultSet findSearchCompany(Connection con, String search) { // °Ë»ö¹®ÀÚ°¡ µé¾î°£ È¸»ç Á¾·ù Ã£´Â ÇÔ¼ö 
+	public static ResultSet findSearchCompany(Connection con, String search) { // ê²€ìƒ‰ë¬¸ìê°€ ë“¤ì–´ê°„ íšŒì‚¬ ì¢…ë¥˜ ì°¾ëŠ” í•¨ìˆ˜ 
 
 		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
 		Statement st;
@@ -36,7 +36,7 @@ public class StockDAO {
 
 			st = con.createStatement();
 
-			if (st.execute(sqlinter +  search + "%'")) { // ÇØ´ç ¹®ÀÚ¿­ÀÌ µé¾î°£ °á°ú ¹İÈ¯ 
+			if (st.execute(sqlinter +  search + "%'")) { // í•´ë‹¹ ë¬¸ìì—´ì´ ë“¤ì–´ê°„ ê²°ê³¼ ë°˜í™˜  
 				return st.getResultSet();
 			}
 
@@ -51,16 +51,16 @@ public class StockDAO {
 		return null;
 	}
 
-	public static ResultSet findFieldSelectCompany(Connection con, String selectCompany) { // È¸»ç¸í¿¡ ÀÏÄ¡ÇÏ´Â ºĞ¾ß ¸®ÅÏ --> ¸¶Áö¸·¿¡ °Ë»ö °á°ú »Ñ·ÁÁÙ ¶§ »ç¿ë 
+	public static ResultSet findFieldSelectCompany(Connection con, String selectCompany) { // íšŒì‚¬ëª…ì— ì¼ì¹˜í•˜ëŠ” ë¶„ì•¼ ë¦¬í„´ --> ë§ˆì§€ë§‰ì— ê²€ìƒ‰ ê²°ê³¼ ë¿Œë ¤ì¤„ ë•Œ ì‚¬ìš© 
 
-		String sqlinter = "SELECT stock_field FROM Stockinsight.Stock WHERE stock_company ="; // È¸»ç¸í¿¡ ÀÏÄ¡ÇÏ´Â ºĞ¾ß ¸®ÅÏ 
+		String sqlinter = "SELECT stock_field FROM Stockinsight.Stock WHERE stock_company ="; // íšŒì‚¬ëª…ì— ì¼ì¹˜í•˜ëŠ” ë¶„ì•¼ ë¦¬í„´ 
 		Statement st;
 		try {
 
 			st = con.createStatement();
 
 			if (st.execute(sqlinter + "'" + selectCompany + "'")) {
-				return st.getResultSet(); // field ³Ñ±è 
+				return st.getResultSet(); // field ë„˜ê¹€ 
 
 			}
 
@@ -75,13 +75,13 @@ public class StockDAO {
 
 	public static ResultSet findFieldSet(Connection con) {
 
-		String sqlinter = "SELECT DISTINCT stock_field FROM Stockinsight.Stock"; // ¸ğµç ºĞ¾ß ¸®ÅÏ 
+		String sqlinter = "SELECT DISTINCT stock_field FROM Stockinsight.Stock"; // ëª¨ë“  ë¶„ì•¼ ë¦¬í„´ 
 		Statement st;
 		try {
 
 			st = con.createStatement();
 			if (st.execute(sqlinter)) {
-				return st.getResultSet(); // field ³Ñ±è 
+				return st.getResultSet(); // field ë„˜ê¹€ 
 
 			}
 
@@ -96,14 +96,14 @@ public class StockDAO {
 	
 	public static ResultSet findStockIndex(Connection con, String selectCompany) {
 
-		String sqlinter = "SELECT stock_index FROM Stockinsight.Stock WHERE stock_company ="; // Stock Å×ÀÌºí¿¡¼­ stock_index °¡Á®¿À±â 
+		String sqlinter = "SELECT stock_index FROM Stockinsight.Stock WHERE stock_company ="; // Stock í…Œì´ë¸”ì—ì„œ stock_index ê°€ì ¸ì˜¤ê¸° 
 		Statement st;
 		try {
 
 			st = con.createStatement();
 			//System.out.println("DBUtil_findStockIndex_selectCompany:" + selectCompany);
 			if (st.execute(sqlinter + "'" + selectCompany + "'")) {
-				return st.getResultSet(); // field ³Ñ±è 
+				return st.getResultSet(); // field ë„˜ê¹€ 
 
 			}
 
@@ -123,7 +123,7 @@ public class StockDAO {
 		try {  
 			//System.out.print("  interest_index: " + interest_index);
 			con.setAutoCommit(false);
-			pstmt = con.prepareStatement("INSERT INTO Stockinsight.Interest (interest_index, User_user_index, Stock_stock_index) VALUES(?, ?, ?)"); // °ü½É Á¾¸ñ »ğÀÔ 
+			pstmt = con.prepareStatement("INSERT INTO Stockinsight.Interest (interest_index, User_user_index, Stock_stock_index) VALUES(?, ?, ?)"); // ê´€ì‹¬ ì¢…ëª© ì‚½ì… 
 			pstmt.setInt(1, interest_index);
 			pstmt.setString(2, user_index);
 			pstmt.setString(3, stock_index);
@@ -147,7 +147,7 @@ public class StockDAO {
 
 	public static ResultSet deleteInterest(Connection con, String user_index, String stock_index ) {
 
-		String sqlinter = "DELETE FROM Stockinsight.Interest WHERE User_user_index="; // °ü½É Á¾¸ñ¿¡ µé¾î°¡ÀÖ´Â Ç×¸ñ »èÁ¦ 
+		String sqlinter = "DELETE FROM Stockinsight.Interest WHERE User_user_index="; // ê´€ì‹¬ ì¢…ëª©ì— ë“¤ì–´ê°€ìˆëŠ” í•­ëª© ì‚­ì œ 
 		String sqlinter2 = "and Stock_stock_index=";
 		Statement st;
 		try {
@@ -156,7 +156,7 @@ public class StockDAO {
 
 			if (st.execute(sqlinter + "'" + user_index + "'" + sqlinter2 + "'" + stock_index + "'" )) {
 				//interest_index = - 1;
-				return st.getResultSet(); // field ³Ñ±è 
+				return st.getResultSet(); // field ë„˜ê¹€ 
 			}
 
 
@@ -172,7 +172,7 @@ public class StockDAO {
 	
 	public static ResultSet findStockIndexFromUser(Connection con, String user_index) {
 
-		String sqlinter = "SELECT Stock_stock_index FROM Stockinsight.Interest WHERE User_user_index ="; // À¯Àú·ÎºÎÅÍ stock_index ¾ò¾î³»±â 
+		String sqlinter = "SELECT Stock_stock_index FROM Stockinsight.Interest WHERE User_user_index ="; // ìœ ì €ë¡œë¶€í„° stock_index ì–»ì–´ë‚´ê¸° 
 		String sqlfield = "";
 		Statement st;
 		try {
@@ -181,7 +181,7 @@ public class StockDAO {
 
 			if (st.execute(sqlinter + "'" + user_index + "'" )) {
 				//interest_index = - 1;
-				return st.getResultSet(); // field ³Ñ±è 
+				return st.getResultSet(); // field ë„˜ê¹€ 
 			}
 
 		} catch (SQLException e) {
@@ -203,7 +203,7 @@ public class StockDAO {
 
 			if (st.execute(sqlinter + "'" + stock_index + "'" )) {
 
-				return st.getResultSet(); // field ³Ñ±è 
+				return st.getResultSet(); // field ë„˜ê¹€ 
 			}
 
 		} catch (SQLException e) {
@@ -215,7 +215,7 @@ public class StockDAO {
 		return null;
 	}
 
-	public static ResultSet findStockCompanyFromStockIndex(Connection con, String stock_company) { //stock_index·Î company ÀÌ¸§ ±¸ÇÏ±â 
+	public static ResultSet findStockCompanyFromStockIndex(Connection con, String stock_company) { //stock_indexë¡œ company ì´ë¦„ êµ¬í•˜ê¸° 
 
 		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_index ="; 
 		Statement st;
@@ -225,7 +225,7 @@ public class StockDAO {
 
 			if (st.execute(sqlinter + "'" + stock_company + "'" )) {
 				//interest_index = - 1;
-				return st.getResultSet(); // field ³Ñ±è 
+				return st.getResultSet(); // field ë„˜ê¹€ 
 			}
 
 		} catch (SQLException e) {
@@ -237,7 +237,7 @@ public class StockDAO {
 		return null;
 	}
 
-	public static ResultSet findStockBeforeFromStockIndex(Connection con, String stock_index) { //stock_index·Î company ÀÌ¸§ ±¸ÇÏ±â 
+	public static ResultSet findStockBeforeFromStockIndex(Connection con, String stock_index) { //stock_indexë¡œ company ì´ë¦„ êµ¬í•˜ê¸° 
 
 		String sqlinter = "SELECT stock_before FROM Stockinsight.Stock WHERE stock_index ="; 
 		Statement st;
@@ -247,7 +247,7 @@ public class StockDAO {
 
 			if (st.execute(sqlinter + "'" + stock_index + "'" )) {
 				//interest_index = - 1;
-				return st.getResultSet(); // field ³Ñ±è 
+				return st.getResultSet(); // field ë„˜ê¹€ 
 			}
 
 		} catch (SQLException e) {
@@ -259,8 +259,7 @@ public class StockDAO {
 		return null;
 	}
 
-
-	public static ResultSet findStockFutureFromStockIndex(Connection con, String stock_index) { //stock_index·Î company ÀÌ¸§ ±¸ÇÏ±â 
+	public static ResultSet findStockFutureFromStockIndex(Connection con, String stock_index) { //stock_indexë¡œ company ì´ë¦„ êµ¬í•˜ê¸° 
 
 		String sqlinter = "SELECT stock_future FROM Stockinsight.Stock WHERE stock_index ="; 
 		Statement st;
@@ -270,7 +269,7 @@ public class StockDAO {
 
 			if (st.execute(sqlinter + "'" + stock_index + "'" )) {
 				//interest_index = - 1;
-				return st.getResultSet(); // field ³Ñ±è 
+				return st.getResultSet(); // field ë„˜ê¹€ 
 			}
 
 		} catch (SQLException e) {
@@ -282,10 +281,9 @@ public class StockDAO {
 		return null;
 	}
 
+	public static ResultSet divStockIndexByField(Connection con, String stock_field) { // interest table ì•ˆì˜ stock_indexë¥¼ ë¶„ì•¼ë³„ë¡œ ë‚˜ëˆ„ê¸° 
 
-	public static ResultSet divStockIndexByField(Connection con, String stock_field) { // interest table ¾ÈÀÇ stock_index¸¦ ºĞ¾ßº°·Î ³ª´©±â 
-
-		String sqlstock = "SELECT Stock_stock_index FROM Stockinsight.Interest WHERE Stock_stock_index IN (SELECT stock_index FROM Stockinsight.Stock WHERE Stockinsight.Stock.stock_field ="; //ºĞ¾ß¿¡ ÇØ´çÇÏ´Â stock_index °¡Á®¿À±â 
+		String sqlstock = "SELECT Stock_stock_index FROM Stockinsight.Interest WHERE Stock_stock_index IN (SELECT stock_index FROM Stockinsight.Stock WHERE Stockinsight.Stock.stock_field ="; //ë¶„ì•¼ì— í•´ë‹¹í•˜ëŠ” stock_index ê°€ì ¸ì˜¤ê¸° 
 
 		Statement st;
 
@@ -307,7 +305,7 @@ public class StockDAO {
 		return null;
 	}
 
-	public static Boolean interestCheck(Connection con, String user_index ,String stock_index) { // interest table ¾ÈÀÇ stock_index¸¦ ºĞ¾ßº°·Î ³ª´©±â 
+	public static Boolean interestCheck(Connection con, String user_index ,String stock_index) { // interest table ì•ˆì˜ stock_indexë¥¼ ë¶„ì•¼ë³„ë¡œ ë‚˜ëˆ„ê¸° 
 
 		String sql = "SELECT interest_index FROM Stockinsight.Interest WHERE User_user_index ="; 
 		String sqltwo = "AND Stock_stock_index =";
@@ -337,7 +335,7 @@ public class StockDAO {
 		return null;
 	}
 	
-	public static ResultSet find_stockcode(Connection con, String stock_index) { //stock_index·Î company ÀÌ¸§ ±¸ÇÏ±â 
+	public static ResultSet find_stockcode(Connection con, String stock_index) { //stock_indexë¡œ company ì´ë¦„ êµ¬í•˜ê¸° 
 		System.out.println("DBU: " + stock_index);
 		String sql = "SELECT stock_code FROM Stockinsight.Stock WHERE stock_index ="; 
 		Statement st;
@@ -347,7 +345,7 @@ public class StockDAO {
 
 			if (st.execute(sql + "'" + stock_index + "'" )) {
 				//interest_index = - 1;
-				return st.getResultSet(); // field ³Ñ±è 
+				return st.getResultSet(); // field ë„˜ê¹€ 
 			}
 
 		} catch (SQLException e) {
@@ -368,7 +366,7 @@ public class StockDAO {
 
 			if (st.execute(sql + "'" + companyName + "'" )) {
 				//interest_index = - 1;
-				return st.getResultSet(); // field ³Ñ±è 
+				return st.getResultSet(); // field ë„˜ê¹€ 
 			}
 
 		} catch (SQLException e) {
@@ -388,7 +386,7 @@ public class StockDAO {
 
 			st = con.createStatement();
 
-			if (st.execute(sqlinter +  search + "%'" + sql)) { // ÇØ´ç ¹®ÀÚ¿­ÀÌ µé¾î°£ °á°ú ¹İÈ¯ 
+			if (st.execute(sqlinter +  search + "%'" + sql)) { // í•´ë‹¹ ë¬¸ìì—´ì´ ë“¤ì–´ê°„ ê²°ê³¼ ë°˜í™˜ 
 				return st.getResultSet();
 			}
 
@@ -411,7 +409,7 @@ public class StockDAO {
 
 			st = con.createStatement();
 
-			if (st.execute(sqlinter +  search + "%'" + sql)) { // ÇØ´ç ¹®ÀÚ¿­ÀÌ µé¾î°£ °á°ú ¹İÈ¯ 
+			if (st.execute(sqlinter +  search + "%'" + sql)) { // í•´ë‹¹ ë¬¸ìì—´ì´ ë“¤ì–´ê°„ ê²°ê³¼ ë°˜í™˜ 
 				return st.getResultSet();
 			}
 
@@ -434,7 +432,7 @@ public class StockDAO {
 
 			st = con.createStatement();
 
-			if (st.execute(sqlinter +  search + "%'" + sql)) { // ÇØ´ç ¹®ÀÚ¿­ÀÌ µé¾î°£ °á°ú ¹İÈ¯ 
+			if (st.execute(sqlinter +  search + "%'" + sql)) { // í•´ë‹¹ ë¬¸ìì—´ì´ ë“¤ì–´ê°„ ê²°ê³¼ ë°˜í™˜ 
 				return st.getResultSet();
 			}
 		} catch (SQLException e) {
@@ -455,7 +453,7 @@ public class StockDAO {
 
 			st = con.createStatement();
 
-			if (st.execute(sqlinter +  search + "%'" + sql)) { // ÇØ´ç ¹®ÀÚ¿­ÀÌ µé¾î°£ °á°ú ¹İÈ¯ 
+			if (st.execute(sqlinter +  search + "%'" + sql)) { // í•´ë‹¹ ë¬¸ìì—´ì´ ë“¤ì–´ê°„ ê²°ê³¼ ë°˜í™˜ 
 				return st.getResultSet();
 			}
 
@@ -478,7 +476,7 @@ public class StockDAO {
 
 			st = con.createStatement();
 
-			if (st.execute(sqlinter +  search + "%'" + sql)) { // ÇØ´ç ¹®ÀÚ¿­ÀÌ µé¾î°£ °á°ú ¹İÈ¯ 
+			if (st.execute(sqlinter +  search + "%'" + sql)) { // í•´ë‹¹ ë¬¸ìì—´ì´ ë“¤ì–´ê°„ ê²°ê³¼ ë°˜í™˜ 
 				return st.getResultSet();
 			}
 

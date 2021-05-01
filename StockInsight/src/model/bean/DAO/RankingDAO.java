@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class RankingDAO {
 	public static String[] getRanking(Connection con, String standard) {
-		// standard ±âÁØÀ¸·Î »óÀ§ 10°³ ¹İÈ¯
+		// standard ê¸°ì¤€ìœ¼ë¡œ ìƒìœ„ 10ê°œ ë°˜í™˜
 
 		String[] companyName = new String[10];
 
@@ -19,7 +19,7 @@ public class RankingDAO {
 			ResultSet rs = st.executeQuery(sql);
 			int count = 0;
 			while (rs.next()) {
-				// »óÀ§ 10°³¸¸ companyName¿¡ Ãß°¡
+				// ìƒìœ„ 10ê°œë§Œ companyNameì— ì¶”ê°€
 				if(count<=9) {
 					companyName[count] = rs.getString(1);
 					count++;
@@ -28,7 +28,7 @@ public class RankingDAO {
 					break;
 				}
 			}
-			// »óÀ§ 10°³ ¹İÈ¯
+			// ìƒìœ„ 10ê°œ ë°˜í™˜
 			return companyName;
 		} catch (SQLException e) {
 
@@ -36,11 +36,11 @@ public class RankingDAO {
 			e.printStackTrace();
 
 		}
-		// ½ÇÆĞ ½Ã
+		// ì‹¤íŒ¨ ì‹œ
 		return null;
 	}
 	
-	// »óÀ§±Ç 5°³ ¹Ş¾Æ¿À´Â ÄÚµå
+	// ìƒìœ„ê¶Œ 5ê°œ ë°›ì•„ì˜¤ëŠ” ì½”ë“œ
 		public static String[][] getTopFive(Connection conn) {
 			String[][] result = new String[5][3];
 			String sql = "select stock_code, stock_company, ((stock_future)-(stock_before))/stock_before*100 from Stock order by ((stock_future)-(stock_before))/stock_before*100 DESC";
@@ -50,7 +50,7 @@ public class RankingDAO {
 				ResultSet rs = st.executeQuery(sql);
 				int count = 0;
 				while (rs.next()) {
-					// »óÀ§ 5°³¸¸ companyName¿¡ Ãß°¡
+					// ìƒìœ„ 5ê°œë§Œ companyNameì— ì¶”ê°€
 					if(count<=4) {
 						result[count][0] = rs.getString(1);
 						result[count][1] = rs.getString(2);
@@ -61,7 +61,7 @@ public class RankingDAO {
 						break;
 					}
 				}
-				// »óÀ§ 10°³ ¹İÈ¯
+				// ìƒìœ„ 10ê°œ ë°˜í™˜
 				return result;
 			} catch (SQLException e) {
 
@@ -69,11 +69,11 @@ public class RankingDAO {
 				e.printStackTrace();
 
 			}
-			// ½ÇÆĞ ½Ã
+			// ì‹¤íŒ¨ ì‹œ
 			return null;
 		}
 
-		// ÇÏÀ§±Ç 5°³ ¹Ş¾Æ¿À´Â ÄÚµå
+		// í•˜ìœ„ê¶Œ 5ê°œ ë°›ì•„ì˜¤ëŠ” ì½”ë“œ
 		public static String[][] getDownFive(Connection conn) {
 			String[][] result = new String[5][3];
 			String sql = "select stock_code, stock_company, ((stock_future)-(stock_before))/stock_before*100 from Stock order by ((stock_future)-(stock_before))/stock_before*100";
@@ -83,7 +83,7 @@ public class RankingDAO {
 				ResultSet rs = st.executeQuery(sql);
 				int count = 0;
 				while (rs.next()) {
-					// ÇÏÀ§ 5°³¸¸ companyName¿¡ Ãß°¡
+					// í•˜ìœ„ 5ê°œë§Œ companyNameì— ì¶”ê°€
 					if(rs.getString(3).equals("-100.0000"))
 						continue;
 					if (count <= 4) {
@@ -95,7 +95,7 @@ public class RankingDAO {
 						break;
 					}
 				}
-				// »óÀ§ 10°³ ¹İÈ¯
+				// ìƒìœ„ 10ê°œ ë°˜í™˜
 				return result;
 			} catch (SQLException e) {
 
@@ -103,7 +103,7 @@ public class RankingDAO {
 				e.printStackTrace();
 
 			}
-			// ½ÇÆĞ ½Ã
+			// ì‹¤íŒ¨ ì‹œ
 			return null;
 
 		}
