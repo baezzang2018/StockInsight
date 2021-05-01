@@ -46,12 +46,12 @@
 <script src="./js/myAjax.js"></script>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 <title>Stock Insight</title>
-<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
 
 
 <script type="text/javascript">
 	var n = 0;
-	var imgs = new Array("title_ver2.png", "title_ver2_2.png");
+	var imgs = new Array("/StockInsight/asset/main_header_titleOn.png", "./asset/main_header_titleOff.png");
 	function rotate() {
 		document.images.slide.src = imgs[n];
 		(n == (imgs.length - 1)) ? n = 0 : n++;
@@ -343,7 +343,7 @@
 	</script>
 	<div class="front">
 		<div class="logo">
-			<a href="main.jsp"><img src="logo.png"
+			<a href="/jsp/main.jsp"><img src="/asset/header_logo.png"
 				style="width: 336px; height: 148px; float: left;"></a>
 		</div>
 
@@ -388,7 +388,7 @@
 			<li id="okaylogin_li"><a href="/Stock_Insigh/sortPredict">🥇예측순위</a></li>&nbsp;&nbsp;&nbsp;
 			<li id="okaylogin_li"><a href="/Stock_Insigh/doLogout"> 로그아웃
 			</a></li> &nbsp; &nbsp;
-			<li id="okaylogin_li"><a id="yellow" href="main.jsp">메인화면</a></li>
+			<li id="okaylogin_li"><a id="yellow" href="/jsp/main.jsp">메인화면</a></li>
 			&nbsp; &nbsp;
 			<li id="okaylogin_li"><a href="/Stock_Insigh/doStock">종목조회</a></li>
 			&nbsp; &nbsp;
@@ -406,7 +406,7 @@
 		%>
 		<ul>
 			<li><a href="login.jsp">로그인</a></li> &nbsp; &nbsp;
-			<li><a id="yellow" href="main.jsp">메인화면</a></li> &nbsp; &nbsp;
+			<li><a id="yellow" href="/jsp/main.jsp">메인화면</a></li> &nbsp; &nbsp;
 			<li><a href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp; &nbsp;
 			<li><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li> &nbsp;
 			&nbsp;
@@ -422,7 +422,7 @@
 	<div>
 		<header>
 			<center>
-				<img src="title_ver2.png" id="slide"
+				<img src="/asset/main_header_titleOff.png" id="slide"
 					style="width: 1200; height: auto";">
 			</center>
 		</header>
