@@ -116,10 +116,63 @@ footer {
 		margin-top: 65px;
 	}
 	
+/*rank*/
+#rank-list a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+#rank-list a:hover {
+	text-decoration: underline;
+}
+
+#rank-list {
+	overflow: hidden;
+	width: 160px;
+	height: 20px;
+	margin: 0;
+}
+
+#rank-list dt {
+	display: none;
+}
+
+#rank-list dd {
+	position: relative;
+	margin: 0;
+}
+
+#rank-list ol {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+#rank-list li {
+	height: 20px;
+	line-height: 20px;
+}
+
+/* login 완료 후 글씨 색 */
+#success_Login {
+   list-style: none;
+   text-align: right;
+   letter-spacing: 2px;
+   margin-bottom: 10px;
+}
+
+#success_Login li{
+   text-decoration: none;
+   color: white;
+   margin-top: 10px;
+}
 
 
 /* For small screen */
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
 	/* Nav container */
 	.flag{
 		display : block;
@@ -135,8 +188,7 @@ footer {
 	}
 	.front{
 		position : static;
-	}
-	
+	}	
 	
 	/* Menu */
 	.front ul {
@@ -157,6 +209,7 @@ footer {
 	.front ul li a {
 		/* Fill in an entire line so that user can click on any space */
 		display: block;
+		margin-top: 10px;
 	}
 
 	/* When toggle button is clicked - active state */
