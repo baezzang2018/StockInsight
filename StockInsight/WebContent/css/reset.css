@@ -156,18 +156,20 @@ footer {
 	line-height: 20px;
 }
 
-/* login ¿Ï·á ÈÄ ±Û¾¾ »ö */
+/* login ï¿½Ï·ï¿½ ï¿½ï¿½ ï¿½Û¾ï¿½ ï¿½ï¿½ */
 #success_Login {
    list-style: none;
    text-align: right;
    letter-spacing: 2px;
-   margin-bottom: 10px;
+   margin-bottom:10px;
+  
 }
 
 #success_Login li{
    text-decoration: none;
    color: white;
-   margin-top: 10px;
+    display : inline-block;
+   margin-bottom: 10px;
 }
 
 
@@ -198,6 +200,7 @@ footer {
 		text-align: right;
 		letter-spacing: 2px;
 		background-color: var(--darkgreen);
+		flex-direction: row;
 	}
 	
 	.front ul li {

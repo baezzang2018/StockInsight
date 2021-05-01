@@ -118,7 +118,7 @@
 			<li>
 				<%
 					String name = (String) session.getAttribute("NAME");
-				out.println(" <b>" + name + "</b> 님 환영합니다. <li><a href=\"javascript:popupOpen();\"/><b>🔔</b></a></li>");
+				out.println(" <b>" + name + "</b> 님 환영합니다. <a style=\"display:inline;\" href=\"javascript:popupOpen();\"/><b>🔔</b></a>");
 				%>
 			</li>
 			</br> 			
