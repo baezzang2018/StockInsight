@@ -40,7 +40,7 @@ public class MyPageDAO {
 
 			if (st.execute(str)) {
 				//System.out.println("1");
-				System.out.println("¿©±â¿Ô¾î?");
+				System.out.println("ì—¬ê¸°ì™”ì–´?");
 				return st.executeQuery(str);
 			}
 
@@ -63,12 +63,12 @@ public class MyPageDAO {
 
 			if (st.execute(sqlSt)) {
 				//System.out.println("1");
-				System.out.println("¼öÁ¤ÇÏ·¯¿Ô¾î¿ä");
+				System.out.println("ìˆ˜ì •í•˜ëŸ¬ì™”ì–´ìš”");
 				return st.executeQuery(sqlSt);
 			}
 
 		} catch (SQLException e) {
-			System.out.println("¼öÁ¤½ÇÆÐ");
+			System.out.println("ìˆ˜ì •ì‹¤íŒ¨");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 

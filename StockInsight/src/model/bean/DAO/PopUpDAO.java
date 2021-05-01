@@ -21,7 +21,7 @@ public class PopUpDAO {
 
 			if (st.execute(sqlSt)) {
 				//System.out.println("1");
-				// System.out.println("¿©±â¿Ô¾î?");
+				// System.out.println("ì—¬ê¸°ì™”ì–´?");
 				// System.out.println("here");
 				return st.executeQuery(sqlSt);
 			}
@@ -51,7 +51,7 @@ public class PopUpDAO {
 
 			if (st.execute(sqlSt)) {
 				//System.out.println("1");
-				// System.out.println("¿©±â¿Ô¾î?");
+				// System.out.println("ì—¬ê¸°ì™”ì–´?");
 				// System.out.println("here");
 				return st.executeQuery(sqlSt);
 			}
