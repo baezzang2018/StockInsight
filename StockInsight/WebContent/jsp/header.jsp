@@ -117,7 +117,7 @@
 		%>
 				<%
 				String currentPage = (String)request.getParameter("currentPage"); 
-				String pageUrl[] = {"/Stock_Insigh/sortPredict","/Stock_Insigh/doLogout","/StockInsight/jsp/main.jsp"
+				String pageUrl[] = {"/Stock_Insigh/sortPredict","/StockInsight/deleteLogout","/StockInsight/jsp/main.jsp"
 						,"/Stock_Insigh/doStock","/Stock_Insigh/doSearchInterest","mypage.jsp",
 						"/Stock_Insigh/postList?pageIndex=1"};
 				String menuName[] = {"🥇예측순위","로그아웃","메인화면","종목조회","관심종목","마이페이지","문의하기"};
@@ -141,7 +141,7 @@
 		<%
 			} else { // 세션존재하지 않음
 				String currentPage = (String)request.getParameter("currentPage"); 
-				String pageUrl[] = {"login.jsp","/StockInsight/jsp/main.jsp","/Stock_Insigh/doStock"
+				String pageUrl[] = {"/StockInsight/searchCheckSession","/StockInsight/jsp/main.jsp","/Stock_Insigh/doStock"
 						,"/Stock_Insigh/doSearchInterest","mypage.jsp","/Stock_Insigh/postList?pageIndex=1"};
 				String menuName[] = {"로그인","메인화면","종목조회","관심종목","마이페이지","문의하기"};
 				
