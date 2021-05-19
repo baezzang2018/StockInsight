@@ -1,23 +1,26 @@
 package controller.servlet.login;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class DoLogin
+ * Servlet implementation class SearchCheckSession
  */
-@WebServlet("/doLogin")
-public class DoLogin extends HttpServlet {
+@WebServlet("/searchCheckSession")
+public class SearchCheckSession extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DoLogin() {
+    public SearchCheckSession() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +30,20 @@ public class DoLogin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		HttpSession session = request.getSession();         
+	
+		if(session.getAttribute("ID") != null) {
+			System.out.println("설마,, 세션,,");
+			RequestDispatcher view = request.getRequestDispatcher("jsp/main.jsp");
+			view.forward(request, response);			
+		}
+		else {
+			RequestDispatcher view = request.getRequestDispatcher("jsp/log_in/login.jsp");
+			view.forward(request, response);					
+		}
 	}
 
 	/**

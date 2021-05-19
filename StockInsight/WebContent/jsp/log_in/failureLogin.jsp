@@ -31,7 +31,15 @@
 </head>
 
 <body>
-	
+	<%
+		String check = (String) request.getAttribute("check");
+		System.out.println(check);
+		if (check.equals("0"))
+			out.println("alert(\"비밀번호가 다릅니다.\");");
+		else
+			out.println("alert(\"가입된 정보가 없습니다.\");");
+	%>
+
 	<section id="content">
 		<nav>
 			로그인<br /> <img class="bar"
@@ -47,7 +55,7 @@
 		<div class="inner_login">
 			<div class="login_start">
 				<form id="login" onsubmit="return validate();" method="POST"
-					action="/StockInsight/searchLogin">
+					action="searchLogin">
 					<fieldset>
 						<div class="box_login">
 							<div class="inp_text">
@@ -64,9 +72,9 @@
 					</fieldset>
 				</form>
 				<fieldset class="login_under">
-					<a href="/StockInsight/jsp/log_in/findId.jsp">ID 찾기 </a> / <a
-						href="/StockInsight/jsp/log_in/findPwd.jsp">PASSWORD 찾기</a> <a
-						href="/StockInsight/jsp/log_in/join.jsp" class="join">회원가입</a>
+					<a href="/StockInsight/searchFindId">ID 찾기 </a> / <a
+						href="/StockInsight/searchFindPwd">PASSWORD 찾기</a> <a
+						href="jsp/log_in/join.jsp" class="join">회원가입</a>
 
 				</fieldset>
 
