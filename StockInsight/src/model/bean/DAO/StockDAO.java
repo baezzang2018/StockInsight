@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import model.bean.DTO.StockDTO;
 
 public class StockDAO {
 	public static ResultSet findCompany(Connection con, String field) { // 선택한 분야의 회사 찾는 함수 
@@ -51,7 +54,7 @@ public class StockDAO {
 		return null;
 	}
 
-	public static ResultSet findFieldSelectCompany(Connection con, String selectCompany) { // 회사명에 일치하는 분야 리턴 --> 마지막에 검색 결과 뿌려줄 때 사용 
+/*	public static ResultSet findFieldSelectCompany(Connection con, String selectCompany) { // 회사명에 일치하는 분야 리턴 --> 마지막에 검색 결과 뿌려줄 때 사용 
 
 		String sqlinter = "SELECT stock_field FROM Stockinsight.Stock WHERE stock_company ="; // 회사명에 일치하는 분야 리턴 
 		Statement st;
@@ -72,7 +75,7 @@ public class StockDAO {
 		}
 		return null;
 	}
-
+*/
 	public static ResultSet findFieldSet(Connection con) {
 
 		String sqlinter = "SELECT DISTINCT stock_field FROM Stockinsight.Stock"; // 모든 분야 리턴 
@@ -94,7 +97,7 @@ public class StockDAO {
 		return null;
 	}
 	
-	public static ResultSet findStockIndex(Connection con, String selectCompany) {
+/*	public static ResultSet findStockIndex(Connection con, String selectCompany) {
 
 		String sqlinter = "SELECT stock_index FROM Stockinsight.Stock WHERE stock_company ="; // Stock 테이블에서 stock_index 가져오기 
 		Statement st;
@@ -115,7 +118,7 @@ public class StockDAO {
 		}
 		return null;
 	}
-
+*/
 	static int interest_index = 0;
 	public static void insertInterest(Connection con, String user_index, String stock_index ) {
 
@@ -193,7 +196,7 @@ public class StockDAO {
 		return null;
 	}
 
-	public static ResultSet findStockFieldFromStockIndex(Connection con, String stock_index) {
+	/*public static ResultSet findStockFieldFromStockIndex(Connection con, String stock_index) {
 
 		String sqlinter = "SELECT stock_field FROM Stockinsight.Stock WHERE stock_index = "; 
 		Statement st;
@@ -280,7 +283,7 @@ public class StockDAO {
 		}
 		return null;
 	}
-
+*/
 	public static ResultSet divStockIndexByField(Connection con, String stock_field) { // interest table 안의 stock_index를 분야별로 나누기 
 
 		String sqlstock = "SELECT Stock_stock_index FROM Stockinsight.Interest WHERE Stock_stock_index IN (SELECT stock_index FROM Stockinsight.Stock WHERE Stockinsight.Stock.stock_field ="; //분야에 해당하는 stock_index 가져오기 
@@ -335,7 +338,7 @@ public class StockDAO {
 		return null;
 	}
 	
-	public static ResultSet find_stockcode(Connection con, String stock_index) { //stock_index로 company 이름 구하기 
+/*	public static ResultSet find_stockcode(Connection con, String stock_index) { //stock_index로 company 이름 구하기 
 		System.out.println("DBU: " + stock_index);
 		String sql = "SELECT stock_code FROM Stockinsight.Stock WHERE stock_index ="; 
 		Statement st;
@@ -355,9 +358,9 @@ public class StockDAO {
 
 		}
 		return null;
-	} 
+	} */
 	
-	public static ResultSet getStockCode(Connection con, String companyName) {
+/*	public static ResultSet getStockCode(Connection con, String companyName) {
 		String sql = "SELECT stock_code FROM Stockinsight.Stock WHERE stock_company ="; 
 		Statement st;
 		try {
@@ -376,7 +379,7 @@ public class StockDAO {
 
 		}
 		return null;
-	}
+	}*/
 
 	public static ResultSet sortVolumeLow(Connection con, String search) {
 		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
@@ -509,5 +512,70 @@ public class StockDAO {
 			if (pstmt != null) {pstmt.close();}
 		}
 		return null;
+	}
+	
+	public static StockDTO getStockListFromStockCompany(Connection con, String selectCompany){ // 회사명에 일치하는 분야 리턴 
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StockDTO stock = new StockDTO();
+		
+		try {
+			StringBuffer query = new StringBuffer();
+			query.append("SELECT * FROM Stockinsight.Stock WHERE stock_company =?");
+			pstmt = con.prepareStatement(query.toString());
+			pstmt.setString(1, selectCompany);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				stock.setRealtime_data(rs.getString("realtime_data"));
+				stock.setStock_before(rs.getInt("stock_before"));
+				stock.setStock_code(rs.getString("stock_code"));
+				stock.setStock_company(rs.getString("stock_company"));
+				stock.setStock_field(rs.getString("stock_field"));
+				stock.setStock_future(rs.getInt("stock_future"));
+				stock.setStock_index(rs.getInt("stock_index"));
+				stock.setStock_volume(rs.getInt("stock_volume"));
+			}
+
+		} catch (SQLException e) {
+
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		return stock;
+	}
+	
+	public static StockDTO getStockListFromStockIndex(Connection con, String selectIndex){ // 회사명에 일치하는 분야 리턴 
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StockDTO stock = new StockDTO();
+		
+		try {
+			StringBuffer query = new StringBuffer();
+			query.append("SELECT * FROM Stockinsight.Stock WHERE stock_Index =?");
+			pstmt = con.prepareStatement(query.toString());
+			pstmt.setString(1, selectIndex);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				stock.setRealtime_data(rs.getString("realtime_data"));
+				stock.setStock_before(rs.getInt("stock_before"));
+				stock.setStock_code(rs.getString("stock_code"));
+				stock.setStock_company(rs.getString("stock_company"));
+				stock.setStock_field(rs.getString("stock_field"));
+				stock.setStock_future(rs.getInt("stock_future"));
+				stock.setStock_index(rs.getInt("stock_index"));
+				stock.setStock_volume(rs.getInt("stock_volume"));
+			}
+
+		} catch (SQLException e) {
+
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		return stock;
 	}
 }

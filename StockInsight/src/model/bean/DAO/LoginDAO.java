@@ -5,8 +5,46 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
-public class LoginDAO {
+import model.bean.DTO.LoginDTO;
+
+public class LoginDAO {	
+	
+	public static LoginDTO getUserListFromUserId(Connection con, String selectId){ // 로그인 user_index에 해당하는 모든 것 리턴 
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      
+	      //ArrayList<LoginDTO> list = new ArrayList<LoginDTO>();
+	      LoginDTO user = new LoginDTO();
+	      try {
+	    	  //LoginDTO user = new LoginDTO();
+	    	  
+	         StringBuffer query = new StringBuffer();
+	         query.append("SELECT * FROM Stockinsight.User WHERE user_id =?");
+	         pstmt = con.prepareStatement(query.toString());
+	         pstmt.setString(1, selectId);
+	         rs = pstmt.executeQuery();
+	         
+	         while(rs.next()) {
+	        	//LoginDTO user = new LoginDTO();
+	        	user.setUser_index(rs.getInt("user_index"));
+	        	user.setUser_name(rs.getString("user_name"));
+	        	user.setUser_id(rs.getString("user_id"));
+	        	user.setUser_email(rs.getString("user_email"));
+	        	user.setUser_pwd(rs.getString("user_pwd"));
+	        	user.setUser_admin(rs.getInt("user_admin"));
+	        	
+	            //list.add(user);
+	         }
+	      } catch (SQLException e) {
+
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	      return user;
+	   }
+	/*
 	public static ResultSet findIndex(Connection con, String mid) {
 		String sql = "SELECT user_index FROM User WHERE user_id=";
 		Statement st;
@@ -22,7 +60,6 @@ public class LoginDAO {
 		}
 		return null;
 	}
-
 
 	public static ResultSet findUser(Connection con, String mid) {
 
@@ -44,6 +81,7 @@ public class LoginDAO {
 		}
 		return null;
 	}
+	*/
 	
 	public static ResultSet findID(Connection conn, String input_name, String input_email) {
 
@@ -112,7 +150,7 @@ public class LoginDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con.setAutoCommit(false);
-			pstmt = con.prepareStatement("INSERT INTO User (user_name, user_id, user_email, user_pwd) VALUES(?, ?,? ,?)");
+			pstmt = con.prepareStatement("INSERT INTO User (user_name, user_id, user_email, user_pwd) VALUES(?, ?,? ," + "SHA2(?,512))");
 			pstmt.setString(1, new_name);
 			pstmt.setString(2, new_id);
 			pstmt.setString(3, new_email);
@@ -151,14 +189,14 @@ public class LoginDAO {
 
 	public static ResultSet findUserIndex(Connection con, String user_id) {
 
-		String sqlinter = "SELECT user_index From Stockinsight.User WHERE user_id ="; // 회사명에 일치하는 분야 리턴 
+		String sqlinter = "SELECT user_index From Stockinsight.User WHERE user_id ="; // �쉶�궗紐낆뿉 �씪移섑븯�뒗 遺꾩빞 由ы꽩 
 		Statement st;
 		try {
 
 			st = con.createStatement();
 			System.out.println("user_id:" + user_id);
 			if (st.execute(sqlinter + "'" + user_id + "'")) {
-				return st.getResultSet(); // field 넘김 
+				return st.getResultSet(); // field �꽆源� 
 
 			}
 

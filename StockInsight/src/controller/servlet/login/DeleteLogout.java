@@ -1,4 +1,4 @@
-package controller.servlet.searchstock;
+package controller.servlet.login;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,18 +6,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 
 /**
- * Servlet implementation class DoSearchStock
+ * Servlet implementation class DeleteLogout
  */
-@WebServlet("/doSearchStock")
-public class DoSearchStock extends HttpServlet {
+@WebServlet("/deleteLogout")
+public class DeleteLogout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DoSearchStock() {
+    public DeleteLogout() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +29,15 @@ public class DoSearchStock extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		HttpSession session = request.getSession();
+
+        session.invalidate();
+
+        response.sendRedirect("/StockInsight/searchCheckSession");
+        
 	}
 
 	/**

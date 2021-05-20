@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
+/*
 public class QnADAO {
 	public static int addQuestion(Connection conn, int uidx, String title, String content, String date) {
 		// index 諛쏆븘�삤湲�
@@ -487,4 +487,4 @@ public class QnADAO {
 			return null;
 		}
 
-}
+}*/
