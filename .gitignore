@@ -10,3 +10,7 @@
 /bin/
 /build/
 web.xml
+
+/lib/
+/WebContent/WEB-INF/lib/
+lib/
