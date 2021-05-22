@@ -14,6 +14,11 @@ public class MyPageDAO {
 		try {
 
 			st = con.createStatement();
+			if(st != null)
+				System.out.print("있");
+			else
+
+				System.out.print("없");
 
 			if (st.execute(sqlSt + "'" + mid + "'")) {
 				System.out.println("1");
@@ -21,7 +26,7 @@ public class MyPageDAO {
 			}
 
 		} catch (SQLException e) {
-			System.out.println("2");
+			System.out.println("22222222222222222222222222222222");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 

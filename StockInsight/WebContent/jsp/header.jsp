@@ -117,9 +117,11 @@
 		%>
 				<%
 				String currentPage = (String)request.getParameter("currentPage"); 
-				String pageUrl[] = {"/Stock_Insigh/sortPredict","/Stock_Insigh/doLogout","/StockInsight/jsp/main.jsp"
-						,"/Stock_Insigh/doStock","/Stock_Insigh/doSearchInterest","mypage.jsp",
+
+				String pageUrl[] = {"/Stock_Insigh/sortPredict","/StockInsight/deleteLogout","/StockInsight/jsp/main.jsp"
+						,"/StockInsight/getStockCompany","/StockInsight/getInterest","/StockInsight/doMyPage",
 						"/StockInsight/getQnaList?pageIndex=1"};
+
 				String menuName[] = {"🥇예측순위","로그아웃","메인화면","종목조회","관심종목","마이페이지","문의하기"};
 				String name = (String) session.getAttribute("NAME");
 				out.print("<li> <b>" + name + 
@@ -141,8 +143,10 @@
 		<%
 			} else { // 세션존재하지 않음
 				String currentPage = (String)request.getParameter("currentPage"); 
-				String pageUrl[] = {"login.jsp","/StockInsight/jsp/main.jsp","/Stock_Insigh/doStock"
-						,"/Stock_Insigh/doSearchInterest","mypage.jsp","/StockInsight/getQnaList?pageIndex=1"};
+
+        String pageUrl[] = {"/StockInsight/searchCheckSession","/StockInsight/jsp/main.jsp","/StockInsight/getStockCompany"
+						,"/StockInsight/getInterest","/StockInsight/doMyPage","/StockInsight/getQnaList?pageIndex=1"};
+
 				String menuName[] = {"로그인","메인화면","종목조회","관심종목","마이페이지","문의하기"};
 				
 				for(int i=0;i<pageUrl.length;i++){
