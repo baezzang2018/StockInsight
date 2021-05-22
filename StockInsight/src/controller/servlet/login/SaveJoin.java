@@ -2,6 +2,7 @@ package controller.servlet.login;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -54,7 +55,7 @@ public class SaveJoin extends HttpServlet {
 		if (overlap == true) { // 아이디 중복
 			out.println("<script language='javascript'>");
 			out.println("alert('아이디 중복 되었습니다.');");
-			out.println("document.location.href=\"/StockInsight/saveJoin\" ;");				
+			out.println("document.location.href=\"/StockInsight/jsp/log_in/join.jsp\" ;");	
 			out.println("</script>");
 			out.flush();
 		/*	request.setAttribute("name", name);
@@ -65,21 +66,31 @@ public class SaveJoin extends HttpServlet {
 			view.forward(request, response); */
 		}
 		else { 
+			int addCheck;
 			try {
-				LoginDAO.addMember(conn, name, id, email, pwd);				
-				out.println("<script language='javascript'>");
-				out.println("alert('회원가입이 완료되었습니다.');");
-				out.println("document.location.href=\"/StockInsight/searchLogin\" ;");				
-				out.println("</script>");
-				out.flush();
-				//response.sendRedirect("jsp/log_in/login.jsp"); 
-			} catch (Exception e) {
+				addCheck = LoginDAO.addMember(conn, name, id, email, pwd);
+				if(addCheck == 1) {
+					out.println("<script language='javascript'>");				
+					out.println("alert('회원가입이 완료되었습니다.');");
+					out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");				
+					out.println("</script>");
+					out.flush();
+					//response.sendRedirect("jsp/log_in/login.jsp"); 
+				} 
+				else {
+					out.println("<script language='javascript'>");				
+					out.println("alert('회원가입이 실패하였습니다. 다시 한번 시도해주세요.');");
+					out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");				
+					out.println("</script>");
+					out.flush();
+				}  
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} 
-           
+			}				         
 		}		
-
 	}
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
