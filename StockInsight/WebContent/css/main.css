@@ -69,7 +69,7 @@ nav {
     #responsive_table th,
     #responsive_table td {
         display: block;
-        /* table¿Í ÇÏÀ§ ¿ä¼ÒµéÀÇ display ¼Ó¼ºÀ» º¯°æÇÕ´Ï´Ù. */
+        /* tableï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Òµï¿½ï¿½ï¿½ display ï¿½Ó¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½. */
          
     }
  
@@ -81,3 +81,4 @@ nav {
     }
 	 
 }
+
