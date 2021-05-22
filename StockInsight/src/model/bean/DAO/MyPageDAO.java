@@ -14,11 +14,6 @@ public class MyPageDAO {
 		try {
 
 			st = con.createStatement();
-			if(st != null)
-				System.out.print("있");
-			else
-
-				System.out.print("없");
 
 			if (st.execute(sqlSt + "'" + mid + "'")) {
 				System.out.println("1");
