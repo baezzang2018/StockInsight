@@ -36,7 +36,7 @@ public class DeleteLogout extends HttpServlet {
 
         session.invalidate();
 
-        response.sendRedirect("/StockInsight/searchCheckSession");
+        response.sendRedirect("/StockInsight/jsp/main.jsp");
         
 	}
 

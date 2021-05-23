@@ -58,14 +58,14 @@ public class SearchFindId extends HttpServlet {
 					String db_id = rs.getString(1);
 					out.println("<script language='javascript'>");
 					out.println("alert(\"" + name + "님의 아이디는 " + db_id + "입니다.\");");
-					out.println("document.location.href=\"/StockInsight/searchLogin\" ;");				
+					out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");				
 					out.println("</script>");
 					out.flush();
 				}
 				else {
 					out.println("<script language='javascript'>");
 					out.println("alert('가입된 정보가 없습니다.');");
-					out.println("document.location.href=\"/StockInsight/searchLogin\" ;");				
+					out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");			
 					out.println("</script>");
 					out.flush();
 				}
