@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/StockInsight/css/login.css" />
 <jsp:include page="/jsp/header.jsp" flush="false">
 	<jsp:param name="currentPage"
-		value="${'/StockInsight/searchLogin'}" />
+		value="${'/StockInsight/jsp/log_in/login.jsp'}" />
 </jsp:include>
 <script>
    function validate() {

@@ -144,7 +144,7 @@
 			} else { // 세션존재하지 않음
 				String currentPage = (String)request.getParameter("currentPage"); 
 
-        String pageUrl[] = {"/StockInsight/searchCheckSession","/StockInsight/jsp/main.jsp","/StockInsight/getStockCompany"
+        String pageUrl[] = {"/StockInsight/jsp/log_in/login.jsp","/StockInsight/jsp/main.jsp","/StockInsight/getStockCompany"
 						,"/StockInsight/getInterest","/StockInsight/doMyPage","/StockInsight/getQnaList?pageIndex=1"};
 
 				String menuName[] = {"로그인","메인화면","종목조회","관심종목","마이페이지","문의하기"};
