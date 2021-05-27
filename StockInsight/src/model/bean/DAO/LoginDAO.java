@@ -170,6 +170,19 @@ public class LoginDAO {
 		return null;
 	}
 
+	public static void updatePWD(Connection conn, String user_id, String tmp_pwd) throws SQLException {
+		String update_pwd = "UPDATE User SET user_pwd = ";
+		Statement st;
+		try {
+
+			st = conn.createStatement();
+			st.execute(update_pwd + "SHA2(" + tmp_pwd + ",512) where user_id ='" + user_id + "'");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	public static int addMember(Connection conn, String new_name, String new_id, String new_email, String new_pwd)
 			throws SQLException {
 		
