@@ -69,11 +69,8 @@ public class WriteQuestion extends HttpServlet {
 			Boolean admin = QnaDAO.checkAdmin(conn, uidx);
 			if (number!=-1) {
 				// 작성한 post 넘기기
-				QnaDTO post = QnaDAO.getQuestionByQuestionIndex(conn, questionIndex);
-				request.setAttribute("post",post);
-				request.setAttribute("admin",admin);
-				RequestDispatcher view = request.getRequestDispatcher("jsp/qna/qnaContent.jsp");
-				view.forward(request, response);
+				System.out.println(questionIndex);
+				response.sendRedirect("/StockInsight/getPost?type=question&index="+questionIndex);
 			}else {
 				// 문의글 작성 실패 시
 				PrintWriter out = response.getWriter();

@@ -57,16 +57,13 @@ public class WriteAnswer extends HttpServlet {
 			response.sendRedirect("login.jsp");
 		} else {
 			int success = QnaDAO.addAnswer(conn, title, content, date, questionIndex);
-			
 			if (success!=-1) {
 				// 제대로 삽입되었으면
-				QnaDTO post = QnaDAO.getAnswerByQuestionIndex(conn, questionIndex);
-				request.setAttribute("post",post);
-				RequestDispatcher view = request.getRequestDispatcher("jsp/qna/qnaContent.jsp");
-				view.forward(request, response);
+				String replyIndex = QnaDAO.getAnswerIndexByQuestionIndex(conn, questionIndex);
+				response.sendRedirect("StockInsight/getPost?type=answer&index="+replyIndex);
 			}else {
 				// 다시 문의하기 페이지로
-				response.sendRedirect("/getQnaList?pageIndex=1");
+				response.sendRedirect("StockInsight/getQnaList?pageIndex=1");
 			}
 		}
 	}
