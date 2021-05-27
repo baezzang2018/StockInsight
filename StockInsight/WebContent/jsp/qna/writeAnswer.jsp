@@ -2,51 +2,20 @@
 	pageEncoding="UTF-8"%>
 <html>
 <head>
-<style>
-#rank-list a {
-	color: #FFF;
-	text-decoration: none;
+<%
+request.setCharacterEncoding("UTF-8");
+response.setCharacterEncoding("UTF-8");
+// 로그인 성공 시 주석 풀기
+if (session.getAttribute("ID") == null) {
+	out.print("<h1> 로그인 후 이용해주세요. </h1>");
+	out.print("<script>");
+	out.print("alert(\"로그인 후 이용해주세요\"); location.href = \"/StockInsight/jsp/log_in/login.jsp\"; ");
+	out.print("</script>");
 }
-
-#rank-list a:hover {
-	text-decoration: underline;
-}
-
-#rank-list {
-	overflow: hidden;
-	width: 160px;
-	height: 20px;
-	margin: 0;
-}
-
-#rank-list dt {
-	display: none;
-}
-
-#rank-list dd {
-	position: relative;
-	margin: 0;
-}
-
-#rank-list ol {
-	position: absolute;
-	top: 0;
-	left: 0;
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-}
-
-#rank-list li {
-	height: 20px;
-	line-height: 20px;
-}
-</style>
-<script src="./js/myAjax.js"></script>
-
+%>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 <title>Stock Insight</title>
-<link rel="stylesheet" type="text/css" href="css/beforeStyle.css" />
+<link rel="stylesheet" type="text/css" href="css/qna.css" />
 
 <jsp:include page="/jsp/header.jsp" flush="false">
 	<jsp:param name="currentPage"
@@ -55,14 +24,16 @@
 	<section id="content">
 
 		<nav>
-			답변 하기<br /> <img class="bar" src="bar.jpg"
-				style="padding-top: 20px; width: 121px; height: 10px; float: center;">
+			답변 하기<br /> 
+<img class="bar" src="/StockInsight/asset/body_titleUnderBar.jpg" style="padding-top: 20px; width: 121px; height: 10px; float: center;">
 		</nav>
 
 		<div class="menu_content">
 			<center>
 				<table class="question_content_table">
 					<%
+					
+					
 					String title = (String)request.getParameter("title");
 					String content = (String)request.getParameter("content");
 					String name = (String)request.getParameter("name");
@@ -73,11 +44,12 @@
                 	out.println("<tr class=\"cont\"><th>작성자</th><td colspan=\"5\">"+name+"</td></tr>");
                 	out.println("<tr class=\"cont\"><th>작성일</th><td colspan=\"5\">"+date+"</td></tr>");
                 	out.println("<tr class=\"cont\"><th>글번호</th><td colspan=\"5\">"+number+"</td></tr>");
-                	out.println("<tr class=\"cont\"><th>내용</th><td colspan=\"5\" height=\"500\">"+content+"</td></tr>");
+                	out.println("<tr class=\"cont\"><th>내용</th><td colspan=\"5\" height=\"300\">"+content+"</td></tr>");
                 	
 					%>
 				</table>
-				<form method="POST" action="writeAnswer">
+				
+				<form method="POST" action="/StockInsight/writeAnswer">
 					<table style="padding-bottom: 50px" align=center border=0
 						cellpadding=2>
 						<tr>
@@ -97,7 +69,7 @@
 
 
 									<tr>
-										<td colspan="2" class="button_table"><a href="/Stock_Insigh/postList?pageIndex=1"
+										<td colspan="2" class="button_table"><a href="/StockInsight/getPost?pageIndex=1"
 											class="btn_question_list">목록가기
 												</button>
 										</a> <input type="submit" class="btn_question_submit" value="등록하기">

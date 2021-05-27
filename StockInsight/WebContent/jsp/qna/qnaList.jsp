@@ -4,51 +4,10 @@
 <html>
 <head>
 
-<style>
-#rank-list a {
-	color: #FFF;
-	text-decoration: none;
-}
-
-#rank-list a:hover {
-	text-decoration: underline;
-}
-
-#rank-list {
-	overflow: hidden;
-	width: 160px;
-	height: 20px;
-	margin: 0;
-}
-
-#rank-list dt {
-	display: none;
-}
-
-#rank-list dd {
-	position: relative;
-	margin: 0;
-}
-
-#rank-list ol {
-	position: absolute;
-	top: 0;
-	left: 0;
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-}
-
-#rank-list li {
-	height: 20px;
-	line-height: 20px;
-}
-</style>
-
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 <title>Stock Insight</title>
 
-<link rel="stylesheet" type="text/css" href="css/beforeStyle.css" />
+<link rel="stylesheet" type="text/css" href="css/qna.css" />
 
 <jsp:include page="/jsp/header.jsp" flush="false">
 	<jsp:param name="currentPage" value="${'/StockInsight/getQnaList?pageIndex=1'}" />
@@ -119,10 +78,10 @@
 					<tr>
 						<%
                   	if (pageindex > 1) {
-                  	out.println("<td><a href=\"/StockInsight/getQna?pageIndex=" + (pageindex - 1) + "\" class=\"page_a\"> &lt; </a></td>");
+                  	out.println("<td><a href=\"/StockInsight/getQna?pageIndex=" + (pageindex - 1) + "\" class=\"pageIndex\"> &lt; </a></td>");
                   }
                   if ((postList.size() / 15 + 1) > pageindex) {
-                  	out.println("<td><a href=\"/StockInsight/getQna?pageIndex=" + (pageindex + 1) + "\" class=\"page_a\"> &gt; </a></td>");
+                  	out.println("<td><a href=\"/StockInsight/getQna?pageIndex=" + (pageindex + 1) + "\" class=\"pageIndex\"> &gt; </a></td>");
                   }
                   %>
 					</tr>

@@ -35,17 +35,14 @@ public class DeleteAnswer extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		// [re]숫자 => 숫자
-		// number = questionIndex
+		// number = answerIndex
 		String number = request.getParameter("number");
-		String[] numberAnswer = number.split("]");
-		number = numberAnswer[1];
 		
 		ServletContext sc = getServletContext();
 		Connection conn = (Connection) sc.getAttribute("DBconnection");
 		
 		try {
-			QnaDAO.removeAnswerByQuestionIndex(conn, number);
+			QnaDAO.removeAnswerByAnswerIndex(conn, number);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
