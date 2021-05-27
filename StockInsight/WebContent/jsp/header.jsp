@@ -7,6 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/StockInsight/css/reset.css" />
+<link rel="shortcut icon" href="/StockInsight/asset/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/StockInsight/asset/favicon.ico" type="image/x-icon">
 
 <script type="text/javascript">
 	var n = 0;
