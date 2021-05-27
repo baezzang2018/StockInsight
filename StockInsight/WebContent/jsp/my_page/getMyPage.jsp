@@ -42,9 +42,6 @@ if (session.getAttribute("ID") == null) {
 					out.println(
 							"<tr><td align=right><font size=\"5\"><b>이메일</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"4\">"
 							+ (String) request.getAttribute("email") + "</font></td></tr>");
-					out.println(
-							"<tr><td align=right><font size=\"5\"><b>패스워드</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"4\">"
-							+ (String) request.getAttribute("pwd") + "</font></td></tr>");
 					%>
 				</table>
 				<br> <br> <br>
@@ -56,7 +53,7 @@ if (session.getAttribute("ID") == null) {
 				<button type="button" class="btn_set"
 					onClick="location.href='setMyPage' ">수정하기</button>
 				<button type="button" class="btn_delete"
-					onClick="location.href='/Stock_Insigh/removeId' ">탈퇴하기</button><br /><br /><br /><br /><br />
+					onClick="location.href='deleteUserData' ">탈퇴하기</button><br /><br /><br /><br /><br />
 			</div>
 		</div>
 	</section>
