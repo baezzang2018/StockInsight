@@ -74,7 +74,7 @@ public class SearchLogin extends HttpServlet {
 					session.setAttribute("ID",input_user_id);   //user correct! 
 					
 					out.println("<script language='javascript'>");
-					out.println("alert('로그인에 성공하였습니다.');");
+					out.println("alert('반갑습니다.\\n스톡인사이트와 함께 당신의 주식투자에 성공하세요!');");
 					out.println("document.location.href=\"/StockInsight/jsp/main.jsp\" ;");				
 					out.println("</script>");
 					out.flush();

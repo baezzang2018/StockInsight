@@ -11,48 +11,41 @@
 		value="${'/StockInsight/jsp/log_in/login.jsp'}" />
 </jsp:include>
 <script>
-   function validate() {
-      var re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{4,12}$/;
+   function join_check() {
+	  var pwd_valid = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,12}$/;
+	  var email_valid = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
+      //var re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{4,12}$/;
       // 아이디와 패스워드가 적합한지 검사할 정규식
     	  
-      var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+      //var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
       // 이메일이 적합한지 검사할 정규식
 
       var email = document.getElementById("email");
+	  var pwd = document.getElementById("pw");
+	  var checkpwd = document.getElementById("checkpw");
 
-
-      if (!check(re2, email, "적합하지 않은 이메일 형식입니다.")) {
-         return false;
+	  if(!email_valid.test(email.value)){
+		  alert("이메일 형식이 알맞지 않습니다.");
+		  email.focus();
+		  return false;
+	  }
+	  
+	  if(!pwd_valid.test(pwd.value)){ // 비밀번호가 정규화식에 알맞지 않으면
+		  alert("비밀번호는 영문자+숫자+특수문자 조합으로 8~12자리 사용해야 합니다.");
+		  pwd.focus();
+		  return false;
+	  }
+	
+      if(pwd.value !== checkpwd.value){ // 비밀번호랑 비밀번호 확인이 알맞지 않으면
+    	  alert("비밀번호가 일치하지 않습니다..");
+    	  checkpwd.focus();
+    	  return false;
       }
-
- <!--  if (!check(re, pw, "패스워드는 4~12자 사이의 영문 대소문자와 숫자를 포함해야 합니다.")) {
-         return false;
-      }-->
-
-      if (join.checkpw.value == "") { // 비밀번호 확인 입력하지 않을때,
-         alert("비밀번호를 확인란을 입력해주세요.");
-         join.checkpw.value = "";
-         join.checkpw.focus();
-         return false;
-      }
-
-      if (join.pw.value != join.checkpw.value) {
-         alert("비밀번호가 다릅니다. 다시 확인해 주세요.");
-         join.checkpw.value = "";
-         join.checkpw.focus();
-         return false;
-      }
-
+      
+      document.join.submit(); //유효성 검사의 포인트
    }
-   function check(re, what, message) {
-      if (re.test(what.value)) {
-         return true;
-      }
-      alert(message);
-      what.value = "";
-      what.focus();
-      //return false;
-   }
+   
 </script>
 </head>
 
@@ -68,7 +61,7 @@
 			</div>
 		</nav>
 
-		<form name="join" onsubmit="return validate();" action="/StockInsight/saveJoin"
+		<form name="join" action="/StockInsight/saveJoin"
 			method="POST">
 			<center>
 				<table class="table">
@@ -102,7 +95,7 @@
 					</tr>
 					<tr>
 						<td></td>
-						<td colspan="2" style="color: red;">※ 4-16자의 영문 대소문자와 숫자로만 입력</td>
+						<td colspan="2" style="color: red;">※ 8-12자의 영문 대소문자 + 숫자 + 특수문자 조합</td>
 					</tr>
 					<tr>
 						<td>비밀번호 확인 :</td>
@@ -110,7 +103,7 @@
 							maxlength="16"></td>
 					</tr>
 				</table>
-				<br /> <br /> <input type="submit" class="join_btn" value=" 회원가입 ">
+				<br /> <br /> <input type="button" onclick="join_check();" class="join_btn" value=" 회원가입 ">
 				<br/><br/>
 				</td>
 			</center>
