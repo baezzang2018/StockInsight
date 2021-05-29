@@ -15,24 +15,6 @@
 </jsp:include>
 
 </head>
-<script>
-function confirmRemove(type){
-	Console.log("삭제");
-	if(type=="Quesion"){
-		if (confirm("문의글을 삭제하시겠습니까??") == true){    //확인
-		    document.deleteQuestion.submit();
-			return true;
-		}
-	}else{
-		if (confirm("답변글을 삭제하시겠습니까??") == true){    //확인
-		    document.deleteAnswer.submit();
-			return true;
-		}
-	}
-	return false;
-}
-
-</script>
 
 <body>
 
@@ -99,7 +81,7 @@ function confirmRemove(type){
  	// 자신의 글을 보고 있다면
  	out.println("<form method='POST' action='/StockInsight/deleteQuestion' name='deleteQuestion'>");
  	out.println(
- 	"<button onclick=\"confirmRemove(\"Question\")\" style=\"font-weight: bold; width: 85px; height: 29px; border-radius: 3px; font-family: 'nanum'; font-size: 12px;  color: #000;background:#fff;\">문의삭제</button>");
+ 	"<button type=\"submit\"  style=\"font-weight: bold; width: 85px; height: 29px; border-radius: 3px; font-family: 'nanum'; font-size: 12px;  color: #000;background:#fff;\">문의삭제</button>");
  	out.println("<input type='hidden' name='number' value='" + post.getIndex() + "'/>");
  	out.println("</form>");
  }
@@ -139,7 +121,7 @@ function confirmRemove(type){
 						out.println("<tr class=\"button_table_content\"><th></th><td colspan=\"4\" height=\"50\"><td>");
 						out.println("<form method='POST' action='/StockInsight/deleteAnswer' name='deleteAnswer'>");
 						out.println(
-						"<button onclick=\"confirmRemove(\"Answer\")\" style=\"font-weight: bold; width: 85px; height: 29px; border-radius: 3px; font-family: 'nanum'; font-size: 12px;  color: #000;background:#fff;\">답변삭제</button>");
+						"<button type=\"submit\" style=\"font-weight: bold; width: 85px; height: 29px; border-radius: 3px; font-family: 'nanum'; font-size: 12px;  color: #000;background:#fff;\">답변삭제</button>");
 						out.println("<input type='hidden' name='number' value='" + replyPost.getIndex() + "'/> </form>");
 						out.println("</td></tr>");
 					}

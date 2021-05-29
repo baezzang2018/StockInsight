@@ -53,7 +53,19 @@
                   	}catch(Exception e){
                   		pageIndexStr = "1";
                   		pageindex = 1;
-                  	}          
+                  	}
+                  	
+                  	if((15*(pageindex-1)) > postList.size()){ //pageIndex가 postList 범위 넘어가면
+                  		if(postList.size()==0){
+                  			pageindex = 1;
+                  		}else{
+                  			pageindex = postList.size()/15 + 1;
+                  			if(postList.size()%15==0){
+                  				pageindex = pageindex-1;
+                  			}
+                  		}
+                  	}
+                  	
                   	
                   	for(int i=(15*(pageindex-1));i<postList.size()&&i<(15*(pageindex-1)+15);i++){
                   		if(postList.get(i).getIsQuestion()){ //질문= 질문글인덱스
@@ -85,10 +97,10 @@
 					<tr>
 						<%
                   	if (pageindex > 1) {
-                  	out.println("<td><a href=\"/StockInsight/getQna?pageIndex=" + (pageindex - 1) + "\" class=\"pageIndex\"> &lt; </a></td>");
+                  	out.println("<td><a href=\"/StockInsight/getQnaList?pageIndex=" + (pageindex - 1) + "\" class=\"pageIndex\"> &lt; </a></td>");
                   }
                   if ((postList.size() / 15 + 1) > pageindex) {
-                  	out.println("<td><a href=\"/StockInsight/getQna?pageIndex=" + (pageindex + 1) + "\" class=\"pageIndex\"> &gt; </a></td>");
+                  	out.println("<td><a href=\"/StockInsight/getQnaList?pageIndex=" + (pageindex + 1) + "\" class=\"pageIndex\"> &gt; </a></td>");
                   }
                   %>
 					</tr>
