@@ -39,6 +39,7 @@ public class WriteQuestion extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
@@ -75,8 +76,8 @@ public class WriteQuestion extends HttpServlet {
 				// 문의글 작성 실패 시
 				PrintWriter out = response.getWriter();
 				out.println("<script language='javascript'>");
-	            out.println("alert('문의글 등록에 실패했습니다.');");
-	            out.println("document.location.href=\"/StockInsight/writeQuestion\" ;");            
+	            out.println("alert('문의글 등록에 실패했습니다.잠시 후 다시 시도해주세요.');");
+	            out.println("document.location.href=\"/StockInsight/getQnaList\" ;");            
 	            out.println("</script>");
 	            out.flush();
 			}
