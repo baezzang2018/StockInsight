@@ -53,7 +53,7 @@
 						style="border: 5px solid #4568DC; width: 360px; height: 510px; float: left">
 						<form method="POST" action="getStockCompany">
 							<%
-							  		String selectField = (String) request.getAttribute("field"); // 받아온 stock_index 
+							  		String selectField = (String) request.getAttribute("field");
                                     if (fieldList != null) {
                                     for (int i = 0; i < fieldList.size(); i++) {
                                  %>
