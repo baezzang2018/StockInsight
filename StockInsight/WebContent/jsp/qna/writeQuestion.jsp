@@ -23,7 +23,7 @@ if (session.getAttribute("ID") == null) {
 	<jsp:param name="currentPage"
 		value="${'/StockInsight/getQnaList?pageIndex=1'}" />
 </jsp:include>
-<link rel="stylesheet" type="text/css" href="css/qna.css" />
+<link rel="stylesheet" type="text/css" href="/StockInsight/css/qna.css" />
 
 </head>
 
@@ -36,7 +36,6 @@ if (session.getAttribute("ID") == null) {
 				src="/StockInsight/asset/body_titleUnderBar.jpg"
 				style="padding-top: 20px; width: 121px; height: 10px; float: center;">
 		</nav>
-		<a herf="test">gg</a>
 		<div class="question_content">
 			<center>
 				<form method="POST" action="/StockInsight/writeQuestion">
@@ -48,7 +47,7 @@ if (session.getAttribute("ID") == null) {
 									<tr>
 										<td>제목</td>
 										<td><input type="text" class="title" name="title"
-											size=86.5 required></td>
+											size=99 required></td>
 									</tr>
 
 									<tr>

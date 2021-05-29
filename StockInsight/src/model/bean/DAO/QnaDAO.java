@@ -316,17 +316,18 @@ public class QnaDAO {
 
 	/* 등록 */
 	// 질문 등록
-	public static int addQuestion(Connection conn, int uidx, String title, String content, String date) {
+	public static int addQuestion(Connection conn, int uidx, String title, String content, String date, String qidx) {
 
-		String insert = "INSERT INTO Question(ques_title,ques_content,ques_date,User_user_index) VALUES(?,?,?,?);";
+		String insert = "INSERT INTO Question(ques_index,ques_title,ques_content,ques_date,User_user_index) VALUES(?,?,?,?,?);";
 		PreparedStatement pstmt = null;
 		try {
 			conn.setAutoCommit(false);
 			pstmt = conn.prepareStatement(insert);
-			pstmt.setString(1, title);
-			pstmt.setString(2, content);
-			pstmt.setString(3, date);
-			pstmt.setString(4, Integer.toString(uidx));
+			pstmt.setString(1, qidx);
+			pstmt.setString(2, title);
+			pstmt.setString(3, content);
+			pstmt.setString(4, date);
+			pstmt.setString(5, Integer.toString(uidx));
 
 			pstmt.executeUpdate();
 			conn.commit();
@@ -460,14 +461,38 @@ public class QnaDAO {
 		return null;
 	}
 
-	public static String getAutoIncrement(Connection conn, String tableName) {
-		String sql = "SELECT AUTO_INCREMENT FROM information_schema.tables WHERE table_name = '" + tableName
-				+ "' and table_schema = 'Stockinsight'";
+	public static String getMaxIndex(Connection conn, String tableName, String column) {
+		//String sql = "SELECT AUTO_INCREMENT FROM information_schema.tables WHERE table_name = '" + tableName
+		//		+ "' and table_schema = 'Stockinsight'";
+		String sql = "SELECT MAX("+column+")" + " FROM "+tableName;
 		Statement st;
 		try {
 			st = conn.createStatement();
 			ResultSet rs = st.executeQuery(sql);
+			
+			while (rs.next()) {
+				String maxIndex = rs.getString(1);
+				if(maxIndex==null) {
+					return "0";
+				}
+				return maxIndex;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
+		return null;
+	}
+	
+	public static String getAutoIndex(Connection conn, String tableName) {
+		String sql = "SELECT AUTO_INCREMENT FROM information_schema.tables WHERE table_name = '" + tableName
+				+ "' and table_schema = 'Stockinsight'";
+		//String sql = "SELECT MAX("+column+")" + " FROM "+tableName;
+		Statement st;
+		try {
+			st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			
 			while (rs.next()) {
 				String autoIndex = rs.getString(1);
 				return autoIndex;

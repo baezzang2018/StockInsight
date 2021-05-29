@@ -45,8 +45,15 @@
                   // 출력할 post list
                   	ArrayList<QnaDTO> postList = (ArrayList<QnaDTO>)request.getAttribute("postList");
                   // 현재 page
-                  	String pageIndexStr = (String)request.getParameter("pageIndex");
-                  	int pageindex = Integer.parseInt(pageIndexStr);
+                  String pageIndexStr = "1";
+                  int pageindex = 1;
+                  	try{
+                  		pageIndexStr = (String)request.getParameter("pageIndex");
+                  		pageindex = Integer.parseInt(pageIndexStr);
+                  	}catch(Exception e){
+                  		pageIndexStr = "1";
+                  		pageindex = 1;
+                  	}          
                   	
                   	for(int i=(15*(pageindex-1));i<postList.size()&&i<(15*(pageindex-1)+15);i++){
                   		if(postList.get(i).getIsQuestion()){ //질문= 질문글인덱스

@@ -15,29 +15,49 @@
 </jsp:include>
 
 </head>
+<script>
+function confirmRemove(type){
+	Console.log("삭제");
+	if(type=="Quesion"){
+		if (confirm("문의글을 삭제하시겠습니까??") == true){    //확인
+		    document.deleteQuestion.submit();
+			return true;
+		}
+	}else{
+		if (confirm("답변글을 삭제하시겠습니까??") == true){    //확인
+		    document.deleteAnswer.submit();
+			return true;
+		}
+	}
+	return false;
+}
 
+</script>
 
 <body>
 
 	<section id="content">
 
 		<nav>
-			문의 게시판<br />
-			<img class="bar" src="/StockInsight/asset/body_titleUnderBar.jpg" style="padding-top: 20px; width: 121px; height: 10px; float: center;">
+			문의 게시판<br /> <img class="bar"
+				src="/StockInsight/asset/body_titleUnderBar.jpg"
+				style="padding-top: 20px; width: 121px; height: 10px; float: center;">
 		</nav>
 
 		<div class="menu_content">
-		
+
 			<center>
 				<table class="question_content_table">
-				<tr class="contType"><th colspan="6">문의글</th></tr>
+					<tr class="contType">
+						<th colspan="6">문의글</th>
+					</tr>
 					<%
-					request.setCharacterEncoding("UTF-8");
+						request.setCharacterEncoding("UTF-8");
 					response.setCharacterEncoding("UTF-8");
 
 					// name, title, content, date, number
 					QnaDTO post = (QnaDTO) request.getAttribute("post");
-		
+
 					out.println("<tr class=\"cont\"><th>제목</th><td colspan=\"5\">" + post.getTitle() + "</td></tr>");
 					out.println("<tr class=\"cont\"><th>작성자</th><td colspan=\"5\">" + post.getWriter() + "</td></tr>");
 					out.println("<tr class=\"cont\"><th>작성일</th><td colspan=\"5\">" + post.getDate() + "</td></tr>");
@@ -74,13 +94,12 @@
 								out.println("<input type=\"hidden\" name=\"content\" value=\"" + post.getContent() + "\">");
 								out.println("<input type=\"hidden\" name=\"number\" value=\"" + post.getIndex() + "\">");
 								%>
-							</form> 
-							<%
+							</form> <%
  	if (session.getAttribute("ID") != null && session.getAttribute("ID").equals(post.getWriter())) {
  	// 자신의 글을 보고 있다면
- 	out.println("<form method='POST' action='/StockInsight/deleteQuestion'>");
+ 	out.println("<form method='POST' action='/StockInsight/deleteQuestion' name='deleteQuestion'>");
  	out.println(
- 	"<button type=\"submit\" style=\"font-weight: bold; width: 85px; height: 29px; border-radius: 3px; font-family: 'nanum'; font-size: 12px;  color: #000;background:#fff;\">문의삭제</button>");
+ 	"<button onclick=\"confirmRemove(\"Question\")\" style=\"font-weight: bold; width: 85px; height: 29px; border-radius: 3px; font-family: 'nanum'; font-size: 12px;  color: #000;background:#fff;\">문의삭제</button>");
  	out.println("<input type='hidden' name='number' value='" + post.getIndex() + "'/>");
  	out.println("</form>");
  }
@@ -88,12 +107,14 @@
 						</td>
 					</tr>
 				</table>
-				
+
 				<%
 					if (hasReply) {
 				%>
 				<table class="question_content_table">
-				<tr class="contType"><th colspan="6">답변글</th></tr>
+					<tr class="contType">
+						<th colspan="6">답변글</th>
+					</tr>
 					<%
 						QnaDTO replyPost = (QnaDTO) request.getAttribute("replyPost");
 
@@ -109,20 +130,20 @@
 					out.println("<tr class=\"cont\"><th>글번호</th><td colspan=\"5\">" + number + "</td></tr>");
 					out.println("<tr class=\"cont\"><th>내용</th><td colspan=\"5\" height=\"300\">" + content + "</td></tr>");
 					%>
-				
-				<%
-				String type = request.getParameter("type");
-				if (session.getAttribute("ID") != null && (Boolean)request.getAttribute("admin")) {
-				    // 답변글을 보고 있는 관리자라면
-				    out.println("<tr class=\"button_table_content\"><th></th><td colspan=\"4\" height=\"50\"><td>");
-				    out.println("<form method='POST' action='/StockInsight/deleteAnswer'>");
-				    out.println(
-				    "<button type=\"submit\" style=\"font-weight: bold; width: 85px; height: 29px; border-radius: 3px; font-family: 'nanum'; font-size: 12px;  color: #000;background:#fff;\">답변삭제</button>");
-				    out.println("<input type='hidden' name='number' value='" + replyPost.getIndex() + "'/> </form>");
-					out.println("</td></tr>"); 
-				}
-				%>
-				
+
+					<%
+						String type = request.getParameter("type");
+					if (session.getAttribute("ID") != null && (Boolean) request.getAttribute("admin")) {
+						// 답변글을 보고 있는 관리자라면
+						out.println("<tr class=\"button_table_content\"><th></th><td colspan=\"4\" height=\"50\"><td>");
+						out.println("<form method='POST' action='/StockInsight/deleteAnswer' name='deleteAnswer'>");
+						out.println(
+						"<button onclick=\"confirmRemove(\"Answer\")\" style=\"font-weight: bold; width: 85px; height: 29px; border-radius: 3px; font-family: 'nanum'; font-size: 12px;  color: #000;background:#fff;\">답변삭제</button>");
+						out.println("<input type='hidden' name='number' value='" + replyPost.getIndex() + "'/> </form>");
+						out.println("</td></tr>");
+					}
+					%>
+
 				</table>
 				<%
 					}

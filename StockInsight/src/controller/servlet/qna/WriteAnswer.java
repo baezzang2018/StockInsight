@@ -60,10 +60,10 @@ public class WriteAnswer extends HttpServlet {
 			if (success!=-1) {
 				// 제대로 삽입되었으면
 				String replyIndex = QnaDAO.getAnswerIndexByQuestionIndex(conn, questionIndex);
-				response.sendRedirect("StockInsight/getPost?type=answer&index="+replyIndex);
+				response.sendRedirect("getPost?type=answer&index="+replyIndex);
 			}else {
 				// 다시 문의하기 페이지로
-				response.sendRedirect("StockInsight/getQnaList?pageIndex=1");
+				response.sendRedirect("getQnaList?pageIndex=1");
 			}
 		}
 	}
