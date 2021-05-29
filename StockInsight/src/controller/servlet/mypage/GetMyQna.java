@@ -43,14 +43,15 @@ public class GetMyQna extends HttpServlet {
         
         HttpSession session = request.getSession();
 	    String user_id = (String) session.getAttribute("ID");// 아이디로 세션 받기
-		// 세션 없으면 로그인으로 돌아가게 해주자!
+	    String check_index = (String) session.getAttribute("INDEX");
+	      
 
+	    
         ServletContext sc = getServletContext();
         Connection conn = (Connection) sc.getAttribute("DBconnection");
-		ArrayList<QnaDTO> myPostList = QnaDAO.getAllPost(conn);
+		ArrayList<QnaDTO> postList = QnaDAO.getMyAllPost(conn, check_index);
         
-		request.setAttribute("postList",myPostList);
-		System.out.println(myPostList);
+		request.setAttribute("postList",postList);
         
 		RequestDispatcher view = request.getRequestDispatcher("jsp/my_page/myQnaList.jsp");
 		view.forward(request, response);

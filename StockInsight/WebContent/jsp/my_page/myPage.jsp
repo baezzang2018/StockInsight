@@ -6,12 +6,16 @@
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 <title>Stock Insight</title>
 <link rel="stylesheet" type="text/css" href="/StockInsight/css/main.css" />
-<link rel="stylesheet" type="text/css" href="/StockInsight/css/myPage.css" />
+<link rel="stylesheet" type="text/css"
+	href="/StockInsight/css/myPage.css" />
 <jsp:include page="/jsp/header.jsp" flush="false">
 	<jsp:param name="currentPage" value="${'/StockInsight/doMyPage'}" />
 </jsp:include>
 </head>
-<body>
+<body onload='rotate()'>
+	<%
+	if (session.getAttribute("ID") != null) { //세션 존재
+	%>
 	<section id="content">
 		<nav>
 			마이페이지 <br /> <img class="bar"
@@ -25,16 +29,29 @@
 				<br> <br> <br> <br>
 				<center>
 					<font size="3"> 패스워드 </font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input autofocus requied type="password" name="user_pwd" id="user_pwd"
-				class="input_tag" placeholder="Enter your Password" />
+					<input autofocus requied type="password" name="user_pwd"
+						id="user_pwd" class="input_tag" placeholder="Enter your Password" />
 				</center>
-				<br> <br> <br> 
-				 <input type="submit" 
-					class="btn_submit" value=" 확 인 "><br> <br /> <br /><br> <br /> <br />
+				<br> <br> <br> <input type="submit"
+					class="btn_submit" value=" 확 인 "><br> <br /> <br />
+				<br> <br /> <br />
 			</form>
 			</center>
 		</div>
 	</section>
+	<%
+	} else { //세션 존재하지 않음
+	%><center>
+		<%
+		out.print("<h1> 로그인 후 이용해주세요. </h1>");
+		out.print("<script>");
+		out.print("alert(\"로그인 후 이용해주세요\"); location.href = \"jsp/log_in/login.jsp\";");
+		out.print("</script>");
+		%>
+	</center>
+	<%
+	}
+	%>
 	<jsp:include page="/jsp/footer.jsp" />
 </body>
 </html>

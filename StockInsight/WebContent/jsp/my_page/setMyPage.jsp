@@ -69,15 +69,10 @@
 	}
 </script>
 </head>
-<body>
-	<%-- <% 세션 체
-if (session.getAttribute("ID") == null) {
-   out.print("<h1> 로그인 후 이용해주세요. </h1>");
-   out.print("<script>");
-   out.print("alert(\"로그인 후 이용해주세요\"); location.href = \"login.jsp\"; ");
-   out.print("</script>");
-}
-%> --%>
+<body onload='rotate()'>
+	<%
+	if (session.getAttribute("ID") != null) { //세션 존재
+	%>
 	<section id="content">
 		<nav>
 			마이페이지 <br /> <img class="bar"
@@ -85,12 +80,10 @@ if (session.getAttribute("ID") == null) {
 				style="padding-top: 20px; width: 121px; height: 10px; float: center;">
 		</nav>
 		<div class="menu_content">
-			변경하고 싶은 정보를 수정한 후<br> 수정완료 버튼을 클릭하세요<br>
-			<br>
-			<br>
+			변경하고 싶은 정보를 수정한 후<br> 수정완료 버튼을 클릭하세요<br> <br> <br>
 			<p style="color: red;">(단, 아이디와 이름은 변경이 불가합니다.)</p>
 			<br> <br> <br>
-			
+
 			<center>
 				<form name="setMyPage" onsubmit="return validation();" method="POST"
 					action="setUserData">
@@ -125,6 +118,19 @@ if (session.getAttribute("ID") == null) {
 		</div>
 		<br> <br> <br>
 	</section>
+	<%
+	} else { //세션 존재하지 않음
+	%><center>
+		<%
+		out.print("<h1> 로그인 후 이용해주세요. </h1>");
+		out.print("<script>");
+		out.print("alert(\"로그인 후 이용해주세요\"); location.href = \"jsp/log_in/login.jsp\";");
+		out.print("</script>");
+		%>
+	</center>
+	<%
+	}
+	%>
 	<jsp:include page="/jsp/footer.jsp" />
 </body>
 </html>
