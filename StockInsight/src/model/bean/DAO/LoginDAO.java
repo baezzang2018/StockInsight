@@ -248,4 +248,22 @@ public class LoginDAO {
 		}
 		return null;
 	}
+
+	public static String getUserNameByUserId(Connection conn, String userId) {
+		Statement stmt = null;
+		String sql = "SELECT user_name FROM User WHERE user_id=\"" + userId + "\"";
+		String name = null;
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				name = rs.getString(1);
+			}
+			return name;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return name;
+		
+	}
 }

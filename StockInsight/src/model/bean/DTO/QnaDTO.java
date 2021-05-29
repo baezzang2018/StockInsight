@@ -8,6 +8,7 @@ public class QnaDTO {
 	private String content;
 	private String date;
 	private String questionIndex;
+	private String writerName = "";
 
 	public QnaDTO() {
 		isQuestion = true;
@@ -37,6 +38,10 @@ public class QnaDTO {
 		this.content = content;
 		this.date = date;
 		questionIndex = "";
+	}
+
+	public void setWriterName(String writerName) {
+		this.writerName = writerName;
 	}
 	
 	//답변글인 경우, 질문글의 index
@@ -84,7 +89,10 @@ public class QnaDTO {
 	public String getDate() {
 		return date;
 	}
-
+	public String getWriterName() {
+		return writerName;
+	}
+	
 	@Override
 	public String toString() {
 		return index + " " + writer + " " + title + " " + content + " " + date;

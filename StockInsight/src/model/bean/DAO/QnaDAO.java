@@ -49,6 +49,7 @@ public class QnaDAO {
 		String content = "";
 		String date = "";
 		String writer = "";
+		String writerName = "";
 
 		Statement stmt = null;
 		String questionQuery = "SELECT * FROM Question order by ques_index DESC";
@@ -64,10 +65,13 @@ public class QnaDAO {
 				content = rs.getString(3);
 				date = rs.getString(4);
 				writer = LoginDAO.getUserIdByIndex(conn, rs.getString(5));
-				if (writer == null) {
+				writerName = LoginDAO.getUserNameByUserId(conn, writer);
+				if (writer == null || writerName==null) {
 					writer = ""; // 작성자가 탈퇴한 경우
+					writerName = "";
 				}
 				question.setQnaDTO(true, index, writer, title, content, date);
+				question.setWriterName(writerName);
 				qnaList.add(question);
 
 				QnaDTO answer = answerList.get(index);
@@ -110,6 +114,7 @@ public class QnaDAO {
 				question_index = rs.getString(5);
 
 				answer.setQnaDTO(false, index, "admin", title, content, date);
+				answer.setWriterName("admin");
 				answer.setQuestionIndex(question_index);
 
 				answerList.put(question_index, answer);
@@ -133,6 +138,7 @@ public class QnaDAO {
 		String content = "";
 		String date = "";
 		String writer = "";
+		String writerName = "";
 
 		try {
 			QnaDTO question = new QnaDTO();
@@ -145,10 +151,13 @@ public class QnaDAO {
 				content = rs.getString(3);
 				date = rs.getString(4);
 				writer = LoginDAO.getUserIdByIndex(conn, rs.getString(5));
-				if (writer == null) {
+				writerName = LoginDAO.getUserNameByUserId(conn, writer);
+				if (writer == null || writerName == null) {
 					writer = ""; // 작성자가 탈퇴한 경우
+					writerName = "";
 				}
 				question.setQnaDTO(true, index, writer, title, content, date);
+				question.setWriterName(writerName);
 			}
 			return question;
 		} catch (SQLException e) {
@@ -169,6 +178,7 @@ public class QnaDAO {
 		String content = "";
 		String date = "";
 		String writer = "";
+		String writerName = "";
 
 		try {
 			QnaDTO question = new QnaDTO();
@@ -180,10 +190,13 @@ public class QnaDAO {
 				content = rs.getString(3);
 				date = rs.getString(4);
 				writer = LoginDAO.getUserIdByIndex(conn, rs.getString(5));
-				if (writer == null) {
+				writerName = LoginDAO.getUserNameByUserId(conn, writer);
+				if (writer == null || writerName == null) {
 					writer = ""; // 작성자가 탈퇴한 경우
+					writerName = "";
 				}
 				question.setQnaDTO(true, index, writer, title, content, date);
+				question.setWriterName(writerName);
 				myQuestionList.add(question);
 			}
 			return myQuestionList;
@@ -216,6 +229,7 @@ public class QnaDAO {
 				question_index = rs.getString(5);
 			}
 			answer.setQnaDTO(false, idx, "admin", title, content, date);
+			answer.setWriterName("admin");
 			answer.setQuestionIndex(question_index);
 			return answer;
 		} catch (SQLException e) {
@@ -246,6 +260,7 @@ public class QnaDAO {
 				date = rs.getString(4);
 			}
 			answer.setQnaDTO(false, index, "admin", title, content, date);
+			answer.setWriterName("admin");
 			answer.setQuestionIndex(ques_idx);
 			return answer;
 		} catch (SQLException e) {
@@ -303,6 +318,7 @@ public class QnaDAO {
 				question_index = rs.getString(5);
 				
 				answer.setQnaDTO(false, index, "admin", title, content, date);
+				answer.setWriterName("admin");
 				answer.setQuestionIndex(question_index);		
 				
 				answerList.add(answer);

@@ -35,6 +35,8 @@ public class DeleteQuestion extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
+		System.out.println("들어옴");
+		
 		// number = questionIndex
 		String number = request.getParameter("number");
 		ServletContext sc = getServletContext();

@@ -59,7 +59,7 @@ function confirmRemove(type){
 					QnaDTO post = (QnaDTO) request.getAttribute("post");
 
 					out.println("<tr class=\"cont\"><th>제목</th><td colspan=\"5\">" + post.getTitle() + "</td></tr>");
-					out.println("<tr class=\"cont\"><th>작성자</th><td colspan=\"5\">" + post.getWriter() + "</td></tr>");
+					out.println("<tr class=\"cont\"><th>작성자</th><td colspan=\"5\">" + post.getWriterName() + "</td></tr>");
 					out.println("<tr class=\"cont\"><th>작성일</th><td colspan=\"5\">" + post.getDate() + "</td></tr>");
 					out.println("<tr class=\"cont\"><th>글번호</th><td colspan=\"5\">");
 					if (post.getIsQuestion()) {
@@ -121,11 +121,12 @@ function confirmRemove(type){
 					String title = replyPost.getTitle();
 					String content = replyPost.getContent();
 					String name = replyPost.getWriter();
+					String realName = replyPost.getWriterName();
 					String number = replyPost.getIndex();
 					String date = replyPost.getDate();
 
 					out.println("<tr class=\"cont\"><th>제목</th><td colspan=\"5\">" + title + "</td></tr>");
-					out.println("<tr class=\"cont\"><th>작성자</th><td colspan=\"5\">" + name + "</td></tr>");
+					out.println("<tr class=\"cont\"><th>작성자</th><td colspan=\"5\">" + realName + "</td></tr>");
 					out.println("<tr class=\"cont\"><th>작성일</th><td colspan=\"5\">" + date + "</td></tr>");
 					out.println("<tr class=\"cont\"><th>글번호</th><td colspan=\"5\">" + number + "</td></tr>");
 					out.println("<tr class=\"cont\"><th>내용</th><td colspan=\"5\" height=\"300\">" + content + "</td></tr>");
