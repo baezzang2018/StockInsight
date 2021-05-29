@@ -54,28 +54,6 @@ public class StockDAO {
 		return null;
 	}
 
-/*	public static ResultSet findFieldSelectCompany(Connection con, String selectCompany) { // 회사명에 일치하는 분야 리턴 --> 마지막에 검색 결과 뿌려줄 때 사용 
-
-		String sqlinter = "SELECT stock_field FROM Stockinsight.Stock WHERE stock_company ="; // 회사명에 일치하는 분야 리턴 
-		Statement st;
-		try {
-
-			st = con.createStatement();
-
-			if (st.execute(sqlinter + "'" + selectCompany + "'")) {
-				return st.getResultSet(); // field 넘김 
-
-			}
-
-		} catch (SQLException e) {
-
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-		}
-		return null;
-	}
-*/
 	public static ResultSet findFieldSet(Connection con) {
 
 		String sqlinter = "SELECT DISTINCT stock_field FROM Stockinsight.Stock"; // 모든 분야 리턴 
@@ -97,34 +75,11 @@ public class StockDAO {
 		return null;
 	}
 	
-/*	public static ResultSet findStockIndex(Connection con, String selectCompany) {
-
-		String sqlinter = "SELECT stock_index FROM Stockinsight.Stock WHERE stock_company ="; // Stock 테이블에서 stock_index 가져오기 
-		Statement st;
-		try {
-
-			st = con.createStatement();
-			//System.out.println("DBUtil_findStockIndex_selectCompany:" + selectCompany);
-			if (st.execute(sqlinter + "'" + selectCompany + "'")) {
-				return st.getResultSet(); // field 넘김 
-
-			}
-
-		} catch (SQLException e) {
-
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-		}
-		return null;
-	}
-*/
 	static int interest_index = 0;
 	public static void insertInterest(Connection con, String user_index, String stock_index ) {
 
 		PreparedStatement pstmt = null;
-		try {  
-			//System.out.print("  interest_index: " + interest_index);
+		try {  	
 			con.setAutoCommit(false);
 			pstmt = con.prepareStatement("INSERT INTO Stockinsight.Interest (interest_index, User_user_index, Stock_stock_index) VALUES(?, ?, ?)"); // 관심 종목 삽입 
 			pstmt.setInt(1, interest_index);
@@ -173,10 +128,9 @@ public class StockDAO {
 		return null;
 	}
 	
-	public static ResultSet findStockIndexFromUser(Connection con, String user_index) {
+	public static ResultSet selectInterest(Connection con, String user_index) {
 
 		String sqlinter = "SELECT Stock_stock_index FROM Stockinsight.Interest WHERE User_user_index ="; // 유저로부터 stock_index 얻어내기 
-		String sqlfield = "";
 		Statement st;
 		try {
 
@@ -196,94 +150,6 @@ public class StockDAO {
 		return null;
 	}
 
-	/*public static ResultSet findStockFieldFromStockIndex(Connection con, String stock_index) {
-
-		String sqlinter = "SELECT stock_field FROM Stockinsight.Stock WHERE stock_index = "; 
-		Statement st;
-		try {
-
-			st = con.createStatement();
-
-			if (st.execute(sqlinter + "'" + stock_index + "'" )) {
-
-				return st.getResultSet(); // field 넘김 
-			}
-
-		} catch (SQLException e) {
-
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-		}
-		return null;
-	}
-
-	public static ResultSet findStockCompanyFromStockIndex(Connection con, String stock_company) { //stock_index로 company 이름 구하기 
-
-		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_index ="; 
-		Statement st;
-		try {
-
-			st = con.createStatement();
-
-			if (st.execute(sqlinter + "'" + stock_company + "'" )) {
-				//interest_index = - 1;
-				return st.getResultSet(); // field 넘김 
-			}
-
-		} catch (SQLException e) {
-
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-		}
-		return null;
-	}
-
-	public static ResultSet findStockBeforeFromStockIndex(Connection con, String stock_index) { //stock_index로 company 이름 구하기 
-
-		String sqlinter = "SELECT stock_before FROM Stockinsight.Stock WHERE stock_index ="; 
-		Statement st;
-		try {
-
-			st = con.createStatement();
-
-			if (st.execute(sqlinter + "'" + stock_index + "'" )) {
-				//interest_index = - 1;
-				return st.getResultSet(); // field 넘김 
-			}
-
-		} catch (SQLException e) {
-
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-		}
-		return null;
-	}
-
-	public static ResultSet findStockFutureFromStockIndex(Connection con, String stock_index) { //stock_index로 company 이름 구하기 
-
-		String sqlinter = "SELECT stock_future FROM Stockinsight.Stock WHERE stock_index ="; 
-		Statement st;
-		try {
-
-			st = con.createStatement();
-
-			if (st.execute(sqlinter + "'" + stock_index + "'" )) {
-				//interest_index = - 1;
-				return st.getResultSet(); // field 넘김 
-			}
-
-		} catch (SQLException e) {
-
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-		}
-		return null;
-	}
-*/
 	public static ResultSet divStockIndexByField(Connection con, String stock_field) { // interest table 안의 stock_index를 분야별로 나누기 
 
 		String sqlstock = "SELECT Stock_stock_index FROM Stockinsight.Interest WHERE Stock_stock_index IN (SELECT stock_index FROM Stockinsight.Stock WHERE Stockinsight.Stock.stock_field ="; //분야에 해당하는 stock_index 가져오기 
@@ -338,49 +204,6 @@ public class StockDAO {
 		return null;
 	}
 	
-/*	public static ResultSet find_stockcode(Connection con, String stock_index) { //stock_index로 company 이름 구하기 
-		System.out.println("DBU: " + stock_index);
-		String sql = "SELECT stock_code FROM Stockinsight.Stock WHERE stock_index ="; 
-		Statement st;
-		try {
-
-			st = con.createStatement();
-
-			if (st.execute(sql + "'" + stock_index + "'" )) {
-				//interest_index = - 1;
-				return st.getResultSet(); // field 넘김 
-			}
-
-		} catch (SQLException e) {
-
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-		}
-		return null;
-	} */
-	
-/*	public static ResultSet getStockCode(Connection con, String companyName) {
-		String sql = "SELECT stock_code FROM Stockinsight.Stock WHERE stock_company ="; 
-		Statement st;
-		try {
-
-			st = con.createStatement();
-
-			if (st.execute(sql + "'" + companyName + "'" )) {
-				//interest_index = - 1;
-				return st.getResultSet(); // field 넘김 
-			}
-
-		} catch (SQLException e) {
-
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-		}
-		return null;
-	}*/
-
 	public static ResultSet sortVolumeLow(Connection con, String search) {
 		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
 		String sql = "ORDER BY stock_volume ASC";
