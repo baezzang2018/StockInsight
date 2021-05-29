@@ -47,19 +47,53 @@ public class GetStockCompany extends HttpServlet {
 
 	      try {
 	         
-	         Statement st = conn.createStatement();
-	         ResultSet rs = StockDAO.findFieldSet(conn);
-	         ArrayList<String> searchFieldList = new ArrayList<String>();
-
-	         if (rs != null) {
-	            while (rs.next()) {
-	               String searchField = rs.getString(1);
-	               searchFieldList.add(searchField);
-	               request.setAttribute("searchFieldList", searchFieldList);
+		         Statement st = conn.createStatement();
+		 /*      ResultSet rs = StockDAO.findFieldSet(conn);
+		              ArrayList<String> searchFieldList = new ArrayList<String>();
+	
+		         if (rs != null) {
+		            while (rs.next()) {
+		               String searchField = rs.getString(1);
+		               searchFieldList.add(searchField);
+		               request.setAttribute("searchFieldList", searchFieldList);
+		            }
+		         }
+		*/         
+	            
+		        String field = request.getParameter("field");
+	            
+	            if(field == null) {
+	            	field = "1차 비철금속 제조업"; //default
+	            }else {
+	            	field = request.getParameter("field"); //선택 분야 
 	            }
-	            RequestDispatcher view = sc.getRequestDispatcher("/jsp/search_stock/stockCompany.jsp");
-	            view.forward(request, response);
-	         }
+	            
+				request.setAttribute("field", field);
+				
+				ResultSet rsc = StockDAO.findCompany(conn, field); 
+				ResultSet rsf = StockDAO.findFieldSet(conn); 
+				
+				ArrayList<String> searchCompanyList = new ArrayList<String>();
+				ArrayList<String> searchFieldList = new ArrayList<String>();
+
+				if (rsc != null) {
+					while (rsc.next()) {
+						String searchCompany = rsc.getString(1); 
+						searchCompanyList.add(searchCompany);
+						request.setAttribute("searchCompanyList", searchCompanyList);
+					}
+				}
+				
+				if(rsf != null) {
+					while(rsf.next()) {
+						String searchField = rsf.getString(1);
+						searchFieldList.add(searchField);
+						request.setAttribute("searchFieldList", searchFieldList);
+					}
+				}
+				
+				RequestDispatcher view = sc.getRequestDispatcher("/jsp/search_stock/stockCompany.jsp");
+				view.forward(request, response);
 	         
 	         
 	      } catch (SQLException e1) {

@@ -82,7 +82,7 @@ public class UpdateInterest extends HttpServlet {
 		    	    st_stock_index = Integer.toString(stock_list_from_company.getStock_index());
 
 		       
-		    		request.setAttribute("selectFuture", stock_list_from_index.getStock_future()); 
+		    		request.setAttribute("selectFuture", Integer.toString(stock_list_from_index.getStock_future())); 
 		    				
 		            request.setAttribute("interCheck", interCheck); 
 		            

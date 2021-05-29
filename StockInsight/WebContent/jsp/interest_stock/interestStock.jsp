@@ -27,11 +27,11 @@
          관심종목<br />  <img class="bar" src="/StockInsight/asset/body_titleUnderBar.jpg"
 				style="padding-top: 20px; width: 121px; height: 10px; float: center;">
       </nav>
-<div class="interst_stock">
-   <div >                   
+<div class="menu_content">
+                     
    <fieldset>
       <%
-       //if(session.getAttribute("ID")!=null){ //세션 존재 
+       if(session.getAttribute("ID")!=null){ //세션 존재 
         
     	%>
        
@@ -51,7 +51,7 @@
                	  out.print(companyList.get(i));
                	  out.print("\">"); 
                
-               	  out.print("<img src=\"heart.png\" style=\"width: 30px; height: auto; \">");
+               	  out.print("<img src=\"/StockInsight/asset/heart.png\" style=\"width: 30px; height: auto; \">");
                	  out.print("<br/>");
                	  out.print("<br/>");
                
@@ -75,11 +75,10 @@
                	  else { %>
                		<p class = "today"><b>내일 예측 가격 : <b style="color:#0066FF;"><%= futureList.get(i)%>원</b></b></p>
                	 <% }  %>
-               </button>
+              </button>
                </div>
                <%
-                  }
-                  
+                  }  
                }
                   else{
                 	  out.print("<center>");
@@ -97,21 +96,20 @@
                 	 
                   }
                %>
-              </div>
             </form>
-      <% //} 
-      // else { // 세션존재하지 않음
+      <% } 
+       else { //세션존재하지 않음
        %><center>
                  <% 
-                  //out.print("<h1> 로그인 후 이용해주세요. </h1>");
-                  //out.print("<script>");
-                  //out.print("alert(\"로그인 후 이용해주세요\"); location.href = \"login.jsp\"; ");
-                  //out.print("</script>");
+                  out.print("<h1> 로그인 후 이용해주세요. </h1>");
+                  out.print("<script>");
+                  out.print("alert(\"로그인 후 이용해주세요\"); location.href = \"jsp/log_in/login.jsp\";");
+                  out.print("</script>");
                   %>
          </center>
-    <%// } %></div>
+    <% } %>
    </fieldset>
-</div></div>
+</div>
 <br /><br/><br /><br /><br/><br />
 
    </section>
