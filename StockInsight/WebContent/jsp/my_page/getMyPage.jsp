@@ -11,6 +11,17 @@
 <jsp:include page="/jsp/header.jsp" flush="false">
 	<jsp:param name="currentPage" value="${'/StockInsight/doMyPage'}" />
 </jsp:include>
+<script type="text/javascript">
+
+function deleteCheck() {
+	if (confirm("계정을 탈퇴하시겠습니까?") != true){    //확인
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+</script>
 </head>
 <body onload='rotate()'>
 	<%
@@ -46,13 +57,11 @@
 					onClick="location.href='getMyQna?pageIndex=1' ">내가 쓴 문의글</button>
 				<button type="button" class="btn_set"
 					onClick="location.href='setMyPage' ">수정하기</button>
-				<button type="button" class="btn_delete"
-					onClick="location.href='deleteUserData' ">탈퇴하기</button>
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
+				<form name="deleteUserData" action="deleteUserData" onsubmit="return deleteCheck();" style="display: inline">
+					<button name="delete" type="submit" class="btn_delete" ">탈퇴하기</button>
+				</form>
+			</form>
+				<br /> <br /> <br /> <br /> <br />
 			</div>
 		</div>
 	</section>

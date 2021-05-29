@@ -88,6 +88,7 @@ public class QnaDAO {
 		return qnaList;
 	}
 	
+	// 내가(user_index) 쓴 문의글과 달린 답변글 가져오기  
 	public static ArrayList<QnaDTO> getMyAllPost(Connection conn, String user_index) {
 		ArrayList<QnaDTO> qnaList = new ArrayList<QnaDTO>(); // question and answer list
 		HashMap<String, QnaDTO> answerList = getAllAnswer(conn); // questionIndex - answer
@@ -97,10 +98,9 @@ public class QnaDAO {
 		String content = "";
 		String date = "";
 		String writer = "";
-
+		String writerName = "";
+		
 		Statement stmt = null;
-//		String questionQuery = "SELECT * FROM Question order by ques_index DESC";
-
 		String questionQuery = "SELECT * FROM Question WHERE User_user_index="+user_index+" order by ques_index DESC";
 
 		try {
@@ -114,10 +114,13 @@ public class QnaDAO {
 				content = rs.getString(3);
 				date = rs.getString(4);
 				writer = LoginDAO.getUserIdByIndex(conn, rs.getString(5));
-				if (writer == null) {
+				writerName = LoginDAO.getUserNameByUserId(conn, writer);
+				if (writer == null || writerName==null) {
 					writer = ""; // 작성자가 탈퇴한 경우
+					writerName = "";
 				}
 				question.setQnaDTO(true, index, writer, title, content, date);
+				question.setWriterName(writerName);
 				qnaList.add(question);
 
 				QnaDTO answer = answerList.get(index);

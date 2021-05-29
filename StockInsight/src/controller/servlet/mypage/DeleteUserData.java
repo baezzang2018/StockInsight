@@ -47,7 +47,6 @@ public class DeleteUserData extends HttpServlet {
         ServletContext sc = getServletContext();
         Connection conn = (Connection) sc.getAttribute("DBconnection");
         
-	    System.out.print(user_id);
 	    int delete = MyPageDAO.deleteUserData(conn, user_id);
 	    
 	    if(delete != 1) {
