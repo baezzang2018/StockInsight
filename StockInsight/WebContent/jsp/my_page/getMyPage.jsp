@@ -12,15 +12,10 @@
 	<jsp:param name="currentPage" value="${'/StockInsight/doMyPage'}" />
 </jsp:include>
 </head>
-<body>
-	<%-- <% 세션 체
-if (session.getAttribute("ID") == null) {
-   out.print("<h1> 로그인 후 이용해주세요. </h1>");
-   out.print("<script>");
-   out.print("alert(\"로그인 후 이용해주세요\"); location.href = \"login.jsp\"; ");
-   out.print("</script>");
-}
-%> --%>
+<body onload='rotate()'>
+	<%
+	if (session.getAttribute("ID") != null) { //세션 존재
+	%>
 	<section id="content">
 		<nav>
 			마이페이지 <br /> <img class="bar"
@@ -47,16 +42,33 @@ if (session.getAttribute("ID") == null) {
 				<br> <br> <br>
 			</center>
 			<div>
-				<form id="getMyPage" action="getMyQna" style="display: inline">
-					<button type="submit" class="btn_collection">내가 쓴 문의글</button>
-				</form>
+				<button type="button" class="btn_collection"
+					onClick="location.href='getMyQna?pageIndex=1' ">내가 쓴 문의글</button>
 				<button type="button" class="btn_set"
 					onClick="location.href='setMyPage' ">수정하기</button>
 				<button type="button" class="btn_delete"
-					onClick="location.href='deleteUserData' ">탈퇴하기</button><br /><br /><br /><br /><br />
+					onClick="location.href='deleteUserData' ">탈퇴하기</button>
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
 			</div>
 		</div>
 	</section>
+	<%
+	} else { //세션 존재하지 않음
+	%><center>
+		<%
+		out.print("<h1> 로그인 후 이용해주세요. </h1>");
+		out.print("<script>");
+		out.print("alert(\"로그인 후 이용해주세요\"); location.href = \"jsp/log_in/login.jsp\";");
+		out.print("</script>");
+		%>
+	</center>
+	<%
+	}
+	%>
 	<jsp:include page="/jsp/footer.jsp" />
 </body>
 </html>

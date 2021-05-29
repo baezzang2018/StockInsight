@@ -87,6 +87,57 @@ public class QnaDAO {
 
 		return qnaList;
 	}
+	
+	public static ArrayList<QnaDTO> getMyAllPost(Connection conn, String user_index) {
+		ArrayList<QnaDTO> qnaList = new ArrayList<QnaDTO>(); // question and answer list
+		HashMap<String, QnaDTO> answerList = getAllAnswer(conn); // questionIndex - answer
+
+		String index = "";
+		String title = "";
+		String content = "";
+		String date = "";
+		String writer = "";
+
+		Statement stmt = null;
+//		String questionQuery = "SELECT * FROM Question order by ques_index DESC";
+
+		String questionQuery = "SELECT * FROM Question WHERE User_user_index="+user_index+" order by ques_index DESC";
+
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(questionQuery);
+			while (rs.next()) {
+				QnaDTO question = new QnaDTO();
+
+				index = rs.getString(1);
+				title = rs.getString(2);
+				content = rs.getString(3);
+				date = rs.getString(4);
+				writer = LoginDAO.getUserIdByIndex(conn, rs.getString(5));
+				if (writer == null) {
+					writer = ""; // 작성자가 탈퇴한 경우
+				}
+				question.setQnaDTO(true, index, writer, title, content, date);
+				qnaList.add(question);
+
+				QnaDTO answer = answerList.get(index);
+				if (answer != null) {
+					qnaList.add(answer);
+				}
+
+			}
+			return qnaList;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return qnaList;
+	}
+	
+	
+	
+	
+	
 
 	// 모든 답변글(질문글index,답변글 형태) 가져오기
 	public static HashMap<String, QnaDTO> getAllAnswer(Connection conn) {

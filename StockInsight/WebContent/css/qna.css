@@ -212,7 +212,7 @@ table .questionTable .content {
    position: relative;
    left: 33%;
    top: 15px;
-   padding: 7 17 7 17;
+   padding: 7px 17px 7px 17px;
    border-radius: 3px;
    font-family: "nanum";
    font-weight: bold;

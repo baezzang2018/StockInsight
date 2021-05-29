@@ -19,13 +19,12 @@
 .btn_collection {
    font-weight: bold;
    margin: 15 0 10 0;
-   width: 105px;
+   width: 90px;
    height: 24px;
    border-radius: 3px;
    font-family: "nanum";
    font-size: 14px;
-   color: #fff;/* 
-   background: linear-gradient(to right, #B06AB3, #4568DC); */
+   color: #fff;
    background-color: #E8CE48;
    border: none;
 }
@@ -55,4 +54,16 @@
    color: #000;
    background-color: #aaaa;
    border: none;
+}
+
+.btn_write {
+   position: relative;
+   left: 33%;
+   top: 15px;
+   padding: 7px 17px 7px 17px;
+   border-radius: 3px;
+   font-family: "nanum";
+   font-weight: bold;
+   font-size: 13px;
+   background-color: #aaaa;
 }
