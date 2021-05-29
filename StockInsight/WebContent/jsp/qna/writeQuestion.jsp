@@ -58,7 +58,7 @@ if (session.getAttribute("ID") == null) {
 
 									<tr>
 										<td colspan="2" class="button_table"><a
-											href="/StockInsight/getQnaList?pageIndex=1"
+											onclick="history.back()"
 											class="btn_question_list">목록보기
 												</button>
 										</a> <input type="submit" class="btn_question_submit" value="등록하기">

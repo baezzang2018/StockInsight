@@ -67,7 +67,7 @@
 									out.println("<button type=\"submit\" class=\"btn_answer\">답변하기</button>");
 								}
 								%>
-								<a href="/StockInsight/getQnaList?pageIndex=1" class="btn_list">목록가기</a>
+								<a onclick="history.back()" class="btn_list">목록가기</a>
 								<%
 									//질문info
 								out.println("<input type=\"hidden\" name=\"title\" value=\"" + post.getTitle() + "\">");
