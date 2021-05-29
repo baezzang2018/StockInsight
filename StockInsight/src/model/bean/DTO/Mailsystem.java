@@ -38,6 +38,7 @@ public class Mailsystem {
 		// props.put("mail.smtp.user", from);
 		props.put("mail.smtp.auth", "true");// SMTP 인증을 설정
 
+		
 		/**
 		 * SMTP 인증이 필요한 경우 반드시 Properties 에 SMTP 인증을 사용한다고 설정하여야 한다. 그렇지 않으면 인증을 시도조차 하지
 		 * 않는다. 그리고 Authenticator 클래스를 상속받은 SMTPAuthenticator 클래스를 생성한다.
