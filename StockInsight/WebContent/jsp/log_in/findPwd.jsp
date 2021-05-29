@@ -5,18 +5,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 <title>Stock Insight</title>
-<link rel="stylesheet" type="text/css" href="/StockInsight/css/login.css" />
+<link rel="stylesheet" type="text/css"
+	href="/StockInsight/css/login.css" />
 <jsp:include page="/jsp/header.jsp" flush="false">
 	<jsp:param name="currentPage"
 		value="${'/StockInsight/jsp/log_in/login.jsp'}" />
 </jsp:include>
 </head>
-<body>
-<section id="content">
+<body onload='rotate()'>
+	<section id="content">
 		<nav>
-			비밀번호 찾기 <br /> <img class="bar" src="/StockInsight/asset/body_titleUnderBar.jpg"
+			비밀번호 찾기 <br /> <img class="bar"
+				src="/StockInsight/asset/body_titleUnderBar.jpg"
 				style="padding-top: 20px; width: 121px; height: 10px; float: center;">
-				
+
 			<br />
 			<div style="font-size: 20px; margin-top: 10px;">
 				<class="welcome">가입할 때 작성한 <b>이름과 이메일 그리고 아이디</b>를 입력해주세요. 
@@ -49,8 +51,8 @@
 			</center>
 		</form>
 	</section>
-	
-	<jsp:include page="/jsp/footer.jsp"/>
-	
+
+	<jsp:include page="/jsp/footer.jsp" />
+
 </body>
 </html>

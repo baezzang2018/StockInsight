@@ -46,10 +46,7 @@ public class SearchFindPwd extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		//email
-		Date date = new Date();
-		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-		String backupDate = sf.format(date);
-		final String from = "baezzang2018@gmail.com"; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+		final String from = "baezzang2018@gmail.com"; // º¸³»´Â »ç¶÷               
 
 		String name = request.getParameter("user_name");
 		String id = request.getParameter("user_id");
@@ -65,68 +62,55 @@ public class SearchFindPwd extends HttpServlet {
 			try
 			{
 				if(rs.next()) { // existing user
-					//ï¿½Ó½Ãºï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½
-					int random = (int)(Math.random() * (999999 - 100000 + 1)) + 100000; // 6ï¿½Ú¸ï¿½
-					String random_pwd = Integer.toString(random);
+					  int random = (int)(Math.random() * (999999 - 100000 + 1)) + 100000; // 6ÀÚ¸® ·£´ý°ª
+		               String random_pwd = Integer.toString(random);
 
-					//ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ 
-					final String to = email;   // ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½
+		               final String to = email;  
 
-					String subject = backupDate+"StockInsight ï¿½Ó½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½Ô´Ï´ï¿½.";// ï¿½ï¿½ï¿½ï¿½
-					String content = "ï¿½È³ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½. ï¿½Ý°ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. StockkInsightï¿½Ô´Ï´ï¿½.\n"+ name +" ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½Ãºï¿½Ð¹ï¿½È£ï¿½ï¿½ " + random_pwd + "ï¿½Ô´Ï´ï¿½.\nï¿½Ø´ï¿½ ï¿½Ó½Ãºï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö½Ã±ï¿½ ï¿½Ù¶ï¿½ï¿½Ï´ï¿½. \nï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.";// ï¿½ï¿½ï¿½ï¿½
+		               String subject = "StockInsight ÀÓ½Ã ºñ¹Ð¹øÈ£ÀÔ´Ï´Ù.";// Á¦¸ñ
+		               String content = "¾È³çÇÏ¼¼¿ä. StockkInsightÀÔ´Ï´Ù.\n"+ name +" ´ÔÀÇ ÀÓ½Ã ºñ¹Ð¹øÈ£´Â " + random_pwd + "ÀÔ´Ï´Ù.\n\nÇØ´ç ÀÓ½Ãºñ¹Ð¹øÈ£·Î ·Î±×ÀÎ ÈÄ ¸¶ÀÌÆäÀÌÁö¿¡¼­ ºñ¹Ð¹øÈ£¸¦ º¯°æ ÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.\n°¨»çÇÕ´Ï´Ù.";// ³»¿ë
 
 					if (from.trim().equals("")) {
-						System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");
-					} else if (to.trim().equals("")) {
-						System.out.println("ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");
-					} else {
+						System.out.println("º¸³»´Â »ç¶÷ÀÌ ¾ø½À´Ï´Ù.");
+					}
+					else if (to.trim().equals("")) {
+						System.out.println("¹Þ´Â »ç¶÷ÀÌ ¾ø½À´Ï´Ù.");
+					} 
+					else {
 						try {
-
 							Mailsystem mt = new Mailsystem();
+ 
+					         // ÀÌ¸ÞÀÏ º¸³»±â
+		                     mt.sendEmail(from, to, subject, content);                     
 
-							// ï¿½ï¿½ï¿½Ïºï¿½ï¿½ï¿½ï¿½ï¿½
-							mt.sendEmail(from, to, subject, content);							
+		                     // user µðºñ ºñ¹ø ¾÷µ¥ÀÌÆ®
+		                     LoginDAO.updatePWD(conn, id, random_pwd);
 
-							// ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
-							LoginDAO.updatePWD(conn, id, random_pwd);
-
-							System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
-							out.println("<script language='javascript'>");
-							out.println("alert(\"ï¿½Ó½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. È®ï¿½ï¿½ ï¿½ï¿½Å¹ï¿½å¸³ï¿½Ï´ï¿½.\");");
-							out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");				
-							out.println("</script>");
-							out.flush();
-
-
-						} catch (MessagingException me) {
-							System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
-							System.out.println("1.ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : " + me.getMessage());
-							out.println("<script language='javascript'>");
-							out.println("alert(\"ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½\");");
-							out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");				
-							out.println("</script>");
-							out.flush();
-						} catch (Exception e) {
-							System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
-							System.out.println("2.ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : " + e.getMessage());
-							out.println("<script language='javascript'>");
-							out.println("alert(\"ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½\");");
-							out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");				
-							out.println("</script>");
-							out.flush();
-						}
+							 out.println("<script language='javascript'>");
+		                     out.println("alert('ÀÌ¸ÞÀÏ·Î ÀÓ½Ã ºñ¹Ð¹øÈ£¸¦ º¸³Â½À´Ï´Ù.\\nÈ®ÀÎºÎÅ¹µå¸³´Ï´Ù.');");
+		                     out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");            
+		                     out.println("</script>");
+		                     out.flush();
+		                     
+		                  } catch (MessagingException me) {
+		                     out.println("<script language='javascript'>");
+		                     out.println("alert('³×Æ®¿öÅ©°¡ ºÒ¾ÈÁ¤ÇÕ´Ï´Ù. Àá½Ã ÈÄ ´Ù½Ã ½ÃµµÇØÁÖ¼¼¿ä.');");
+		                     out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");            
+		                     out.println("</script>");
+		                     out.flush();
+		                  } catch (Exception e) {
+		                     out.println("<script language='javascript'>");
+		                     out.println("alert('°¡ÀÔµÈ ÀÌ¸ÞÀÏÀÌ À¯È¿ÇÏÁö ¾Ê½À´Ï´Ù.');");
+		                     out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");            
+		                     out.println("</script>");
+		                     out.flush();
+		                  }
 					}
 
-					/*	checkpwd = rs.getString(1);	
-					out.println("<script language='javascript'>");
-					out.println("alert(\"" + name + "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ " + checkpwd + "ï¿½Ô´Ï´ï¿½.\");");
-					out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");				
-					out.println("</script>");
-					out.flush();*/
 				}
 				else {
 					out.println("<script language='javascript'>");
-					out.println("alert('ï¿½ï¿½ï¿½Ôµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.');");
+					out.println("alert('°¡ÀÔµÈ Á¤º¸°¡ ¾ø½À´Ï´Ù.');");
 					out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");				
 					out.println("</script>");
 					out.flush();
@@ -135,12 +119,6 @@ public class SearchFindPwd extends HttpServlet {
 				e.printStackTrace();
 			} 
 		}
-		/*if(checkpwd != null) {
-			request.setAttribute("name", name);
-			request.setAttribute("checkpwd", checkpwd);
-			RequestDispatcher view = request.getRequestDispatcher("pwdfind.jsp");
-			view.forward(request, response);
-		}*/
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

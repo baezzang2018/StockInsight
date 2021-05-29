@@ -30,7 +30,7 @@
 </script>
 </head>
 
-<body>
+<body onload='rotate()'>
 	<%
 		String check = (String) request.getAttribute("check");
 		System.out.println(check);
