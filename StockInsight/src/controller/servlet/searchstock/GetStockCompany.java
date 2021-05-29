@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.bean.DAO.StockDAO;
+import model.bean.DTO.StockDTO;
 
 /**
  * Servlet implementation class GetStockCompany
@@ -47,18 +48,7 @@ public class GetStockCompany extends HttpServlet {
 
 	      try {
 	         
-		         Statement st = conn.createStatement();
-		 /*      ResultSet rs = StockDAO.findFieldSet(conn);
-		              ArrayList<String> searchFieldList = new ArrayList<String>();
-	
-		         if (rs != null) {
-		            while (rs.next()) {
-		               String searchField = rs.getString(1);
-		               searchFieldList.add(searchField);
-		               request.setAttribute("searchFieldList", searchFieldList);
-		            }
-		         }
-		*/         
+		         Statement st = conn.createStatement();  
 	            
 		        String field = request.getParameter("field");
 	            
