@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 
 import model.bean.DAO.LoginDAO;
 import model.bean.DAO.StockDAO;
+import model.bean.DTO.LoginDTO;
 import model.bean.DTO.StockDTO;
 
 
@@ -51,23 +52,14 @@ public class GetInterest extends HttpServlet {
 	      PrintWriter out = response.getWriter();
 	     
 	      HttpSession session = request.getSession();
-	      String user_id = (String) session.getAttribute("ID");
-	      String user_index = null;
-   
+	      String user_id = (String) session.getAttribute("ID");    
+	      
 	      try {
-	         
-	         Statement st = conn.createStatement();
-	         
-	         ResultSet rs_user_id = LoginDAO.findUserIndex(conn, user_id);
-	          
-	         if (rs_user_id != null) {
-		            while (rs_user_id.next()) {
-		               user_index = rs_user_id.getString(1);
-		               request.setAttribute("user_index", user_index); 
-		            }
-		         }
+	              
+		     LoginDTO login = LoginDAO.getUserListFromUserId(conn, user_id);
+	      	 String user_index = Integer.toString(login.getUser_index());
       
-	         ResultSet rs_stock_index = StockDAO.findStockIndexFromUser(conn, user_index);
+	         ResultSet rs_stock_index = StockDAO.selectInterest(conn, user_index);
 	         ArrayList<String> findStockIndexFromUser = new ArrayList<String>(); 
 
 	         if (rs_stock_index != null) {
@@ -79,29 +71,26 @@ public class GetInterest extends HttpServlet {
 	            }
 	            
 	         }
-	                 
-	         ResultSet rs_stock_field = null;
-	         ArrayList<String> findStockIndex_FromUser = (ArrayList<String>) request.getAttribute("findStockIndexFromUser"); // user媛   꽔   醫낅ぉ index 由ъ뒪 듃 
-	         ArrayList<String> findStockFieldFromStockIndex = new ArrayList<String>(); // 씤 뜳 뒪濡쒕  꽣 遺꾩빞 異붿텧 
-	         
-	         ResultSet rs_stock_company = null;
-	         ArrayList<String> findCompanyList = new ArrayList<String>();
-	         
-	         ResultSet rs_stock_before = null;
-	         ArrayList<String> findBeforeList = new ArrayList<String>();
-	         
-	         ResultSet rs_stock_future = null;
+	                           
+	         ArrayList<String> findStockFieldFromStockIndex = new ArrayList<String>();    
+	         ArrayList<String> findCompanyList = new ArrayList<String>();   
+	         ArrayList<String> findBeforeList = new ArrayList<String>(); 
 	         ArrayList<String> findFutureList = new ArrayList<String>();
 	         
-	         if (findStockIndex_FromUser != null) {
-	        	 for (int i = 0; i < findStockIndex_FromUser.size(); i++) { //stock_index list 뿉 꽌 stock_index  븯 굹 뵫 媛  졇   꽌 field 援ы븯湲   
+	         if (findStockIndexFromUser != null) {
+	        	 for (int i = 0; i < findStockIndexFromUser.size(); i++) { //stock_index list   
           	  
-					StockDTO stock_list_from_index = StockDAO.getStockListFromStockIndex(conn, findStockIndex_FromUser.get(i));
+					StockDTO stock_list_from_index = StockDAO.getStockListFromStockIndex(conn, findStockIndexFromUser.get(i));
 					
-					request.setAttribute("findStockFieldFromStockIndex", stock_list_from_index.getStock_field()); 	                     
-	       		    request.setAttribute("searchCompanyList", stock_list_from_index.getStock_company());
-	       		    request.setAttribute("findBeforeList", stock_list_from_index.getStock_before()); 
-	       		    request.setAttribute("findFutureList", stock_list_from_index.getStock_future());   
+					findStockFieldFromStockIndex.add(stock_list_from_index.getStock_field());
+					findCompanyList.add(stock_list_from_index.getStock_company());
+					findBeforeList.add(Integer.toString(stock_list_from_index.getStock_before()));
+					findFutureList.add(Integer.toString(stock_list_from_index.getStock_future()));
+							
+					request.setAttribute("findStockFieldFromStockIndex", findStockFieldFromStockIndex); 	
+	       		    request.setAttribute("searchCompanyList", findCompanyList);   		    
+	       		    request.setAttribute("findBeforeList", findBeforeList);  		    
+	       		    request.setAttribute("findFutureList", findFutureList);   
 
 	           }
 		         }

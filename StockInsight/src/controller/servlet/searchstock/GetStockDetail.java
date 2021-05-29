@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.bean.DAO.StockDAO;
+import model.bean.DTO.LoginDTO;
 import model.bean.DTO.StockDTO;
 import model.bean.DAO.LoginDAO;
 
@@ -50,8 +51,7 @@ public class GetStockDetail extends HttpServlet {
 				
 				HttpSession session = request.getSession();
 				String user_id = (String) session.getAttribute("ID");
-				String user_index = null;
-				String stock_index = null;
+				String user_index = null;	
 
 				int value = 0;
 				
@@ -59,30 +59,17 @@ public class GetStockDetail extends HttpServlet {
 				request.setAttribute("selectCompany", selectCompany); 
 				
 				StockDTO stock_list_from_company = StockDAO.getStockListFromStockCompany(conn, selectCompany);
-				StockDTO stock_list_from_index = StockDAO.getStockListFromStockIndex(conn, stock_index);
-				
+	
 				try {	
 					Statement st = conn.createStatement();
-					
-					 // user_index 
-					ResultSet rs_user_id = LoginDAO.findUserIndex(conn, user_id);
-			         
-			         
-			         if (rs_user_id != null) {
-				            while (rs_user_id.next()) {
-				               user_index = rs_user_id.getString(1);
-				               request.setAttribute("user_index", user_index); 
-				            }
-				         }
-			         
-			         System.out.print("doSearchFinal_user_index : " + user_index + "\n");	         
-					
-					
-			        request.setAttribute("stock_index", stock_list_from_company.getStock_index()); 
-					request.setAttribute("selectFuture", Integer.toString(stock_list_from_index.getStock_future())); 
+				
+			        LoginDTO login = LoginDAO.getUserListFromUserId(conn, user_id);
+			      	user_index = Integer.toString(login.getUser_index());
+			      	request.setAttribute("user_index", user_index); 
+			        request.setAttribute("stock_index", Integer.toString(stock_list_from_company.getStock_index())); 
+			        request.setAttribute("selectFuture", Integer.toString(stock_list_from_company.getStock_future()));
 		              
-		            //interest_index 
-		            Boolean interCheck = StockDAO.interestCheck(conn, user_index, stock_index);
+		            Boolean interCheck = StockDAO.interestCheck(conn, user_index, Integer.toString(stock_list_from_company.getStock_index()));
 		            request.setAttribute("interCheck", interCheck);                 
 					
 					request.setAttribute("selectField", stock_list_from_company.getStock_field());
@@ -93,7 +80,7 @@ public class GetStockDetail extends HttpServlet {
 					e1.printStackTrace();
 				}
 				
-				request.setAttribute("stock_code", stock_list_from_index.getStock_code());
+				request.setAttribute("stock_code", stock_list_from_company.getStock_code());
 				value = 2;
 						
 				

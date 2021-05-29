@@ -1,6 +1,11 @@
 .inner_search {
    top: 100%;
 }
+
+ .interst_stock {
+   top: 150%;
+}
+
 fieldset, img {
    border: 0;
 }
@@ -14,10 +19,6 @@ fieldset, img {
     background-color: #ff8080;
     color: white;
   }
-
-  .interst_stock {
-   top: 100%;
-}
 
   .search{
    border: 5px solid #E8CE48;
@@ -259,8 +260,8 @@ fieldset, img {
   }
 
   .interest li a:active {
-    background-color: #ff8080;
-    color: white;
+     background: linear-gradient(to right, #B06AB3, #4568DC); 
+     color: white;
   }
 
   .interst_stock {
@@ -326,7 +327,7 @@ fieldset, img {
   
   .interbtn li a:visited{
      background: linear-gradient(to right, #B06AB3, #4568DC); 
-    color: white;
+     color: white;
   }
   
   .resultPrice{

@@ -46,10 +46,7 @@ public class SearchFindPwd extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		//email
-		Date date = new Date();
-		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-		String backupDate = sf.format(date);
-		final String from = "baezzang2018@gmail.com"; // 메일 보내는 사람
+		final String from = "baezzang2018@gmail.com"; // 보내는 사람               
 
 		String name = request.getParameter("user_name");
 		String id = request.getParameter("user_id");
@@ -65,64 +62,51 @@ public class SearchFindPwd extends HttpServlet {
 			try
 			{
 				if(rs.next()) { // existing user
-					//임시비밀번호 생성
-					int random = (int)(Math.random() * (999999 - 100000 + 1)) + 100000; // 6자리
-					String random_pwd = Integer.toString(random);
+					  int random = (int)(Math.random() * (999999 - 100000 + 1)) + 100000; // 6자리 랜덤값
+		               String random_pwd = Integer.toString(random);
 
-					//이메일 비밀번호 보내기 코드 
-					final String to = email;   // 메일 받는 사람
+		               final String to = email;  
 
-					String subject = backupDate+"StockInsight 임시 비밀번호입니다.";// 제목
-					String content = "안녕하세요. 반갑습니다. StockkInsight입니다.\n"+ name +" 님의 임시비밀번호는 " + random_pwd + "입니다.\n해당 임시비밀번호로 로그인 후 마이페이지에서 비밀번호를 변경 해주시기 바랍니다. \n감사합니다.";// 내용
+		               String subject = "StockInsight 임시 비밀번호입니다.";// 제목
+		               String content = "안녕하세요. StockkInsight입니다.\n"+ name +" 님의 임시 비밀번호는 " + random_pwd + "입니다.\n\n해당 임시비밀번호로 로그인 후 마이페이지에서 비밀번호를 변경 해주시기 바랍니다.\n감사합니다.";// 내용
 
 					if (from.trim().equals("")) {
-						System.out.println("보내는 사람을 입력하지 않았습니다.");
-					} else if (to.trim().equals("")) {
-						System.out.println("받는 사람을 입력하지 않았습니다.");
-					} else {
+						System.out.println("보내는 사람이 없습니다.");
+					}
+					else if (to.trim().equals("")) {
+						System.out.println("받는 사람이 없습니다.");
+					} 
+					else {
 						try {
-
 							Mailsystem mt = new Mailsystem();
+ 
+					         // 이메일 보내기
+		                     mt.sendEmail(from, to, subject, content);                     
 
-							// 메일보내기
-							mt.sendEmail(from, to, subject, content);							
+		                     // user 디비 비번 업데이트
+		                     LoginDAO.updatePWD(conn, id, random_pwd);
 
-							// 임시 비번 디비 업데이트
-							LoginDAO.updatePWD(conn, id, random_pwd);
-
-							System.out.println("메일 전송에 성공하였습니다.");
-							out.println("<script language='javascript'>");
-							out.println("alert(\"임시 비밀번호를 이메일로 전송했습니다. 확인 부탁드립니다.\");");
-							out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");				
-							out.println("</script>");
-							out.flush();
-
-
-						} catch (MessagingException me) {
-							System.out.println("메일 전송에 실패하였습니다.");
-							System.out.println("1.실패 이유 : " + me.getMessage());
-							out.println("<script language='javascript'>");
-							out.println("alert(\"오류 1번\");");
-							out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");				
-							out.println("</script>");
-							out.flush();
-						} catch (Exception e) {
-							System.out.println("메일 전송에 실패하였습니다.");
-							System.out.println("2.실패 이유 : " + e.getMessage());
-							out.println("<script language='javascript'>");
-							out.println("alert(\"오류 2번\");");
-							out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");				
-							out.println("</script>");
-							out.flush();
-						}
+							 out.println("<script language='javascript'>");
+		                     out.println("alert('이메일로 임시 비밀번호를 보냈습니다.\\n확인부탁드립니다.');");
+		                     out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");            
+		                     out.println("</script>");
+		                     out.flush();
+		                     
+		                  } catch (MessagingException me) {
+		                     out.println("<script language='javascript'>");
+		                     out.println("alert('네트워크가 불안정합니다. 잠시 후 다시 시도해주세요.');");
+		                     out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");            
+		                     out.println("</script>");
+		                     out.flush();
+		                  } catch (Exception e) {
+		                     out.println("<script language='javascript'>");
+		                     out.println("alert('가입된 이메일이 유효하지 않습니다.');");
+		                     out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");            
+		                     out.println("</script>");
+		                     out.flush();
+		                  }
 					}
 
-					/*	checkpwd = rs.getString(1);	
-					out.println("<script language='javascript'>");
-					out.println("alert(\"" + name + "님의 비밀번호는 " + checkpwd + "입니다.\");");
-					out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");				
-					out.println("</script>");
-					out.flush();*/
 				}
 				else {
 					out.println("<script language='javascript'>");
@@ -135,18 +119,14 @@ public class SearchFindPwd extends HttpServlet {
 				e.printStackTrace();
 			} 
 		}
-		/*if(checkpwd != null) {
-			request.setAttribute("name", name);
-			request.setAttribute("checkpwd", checkpwd);
-			RequestDispatcher view = request.getRequestDispatcher("pwdfind.jsp");
-			view.forward(request, response);
-		}*/
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		doGet(request, response);
 	}
 

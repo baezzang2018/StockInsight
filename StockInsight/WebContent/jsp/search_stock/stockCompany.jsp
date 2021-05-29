@@ -11,6 +11,7 @@
 <jsp:include page="/jsp/header.jsp" flush="false">
        <jsp:param name="currentPage" value="${'/StockInsight/getStockCompany'}" />
 </jsp:include>
+	
 </head>
 <body>
 <section id="content">
@@ -39,8 +40,10 @@
 				</center>
 				<br /> <br />
 				<div class="inn">
-					<h1 class="inn h1" style="margin-left: 17%">분야</h1>
-					<h1 class="inn h1" style="margin-left: 50%">회사</h1>
+				  
+					<h1 class="inn h1"style="margin-left:15%">분야</h1> 
+					<h1 class="inn h1"style="margin-left:49%">회사</h1>
+				  
 				</div>
 				<br /> <br /> <br />
 
@@ -48,21 +51,32 @@
 
 					<ul class="interest ul"
 						style="border: 5px solid #4568DC; width: 360px; height: 510px; float: left">
-						<form method="POST" action="getStockCategory">
+						<form method="POST" action="getStockCompany">
 							<%
+							  		String selectField = (String) request.getAttribute("field");
                                     if (fieldList != null) {
                                     for (int i = 0; i < fieldList.size(); i++) {
                                  %>
-							<%
-                                 out.print("<button type = \"submit\" class=\"interbtn\" name= \"field\" style=\"height: 40px; width: 340px;\" value = \"");
-                                 out.print(fieldList.get(i));
-                                 out.print("\">");
-                                 out.print("<li>");
-                                 out.print("<a>");
-                                 out.print(fieldList.get(i));
-                                 out.print("</a>");
-                                 out.print("</li>");
-                                 out.print("</button>");   
+							<% 
+	                                 if(selectField.equals(fieldList.get(i))){
+	                                	 out.print("<button type = \"submit\" name= \"field\" style=\"height: 40px; width: 340px; background: linear-gradient(to right, #B06AB3, #4568DC); border: none; outline: none;\" value = \"");   
+										 out.print(fieldList.get(i));
+		                                 out.print("\">");
+		                                 out.print("<li>");
+	                                	 out.print("<a style = \"color:white;\">");
+	                                	 out.print(fieldList.get(i));
+	                                	 out.print("</a>");
+	                                 }else{
+	                                	 out.print("<button type = \"submit\" class=\"interbtn\" name= \"field\" style=\"height: 40px; width: 340px;\" value = \"");   
+										 out.print(fieldList.get(i));
+		                                 out.print("\">");
+		                                 out.print("<li>");
+	                                	 out.print("<a class=\"interbtn\" >");
+	                                	 out.print(fieldList.get(i));        
+	                                	 out.print("</a>");
+	                                	 out.print("</li>");
+		                                 out.print("</button>");   
+	                                 } 
                                  %>
 							<%
                                     }
@@ -70,11 +84,7 @@
                                  %>
 						</form>
 					</ul>
-					<!--	</center> -->
-					<!--</div> -->
 
-					<!--  <div class="interest"> -->
-					<!--  <center> -->
 					<ul class="interest ul"
 						style="border: 5px solid #B06AB3; width: 360px; height: 510px;">
 						<form method="POST" action="getStockDetail">
@@ -83,15 +93,15 @@
                                        for (int i = 0; i < companyList.size(); i++) {
                                     %>
 							<%
-                                    out.print("<button type = \"submit\" class=\"interbtn\" name= \"selectCompany\" style=\"height: 40px; width: 340px;\" value = \"");
-                                 out.print(companyList.get(i));
-                                 out.print("\">");
-                                 out.print("<li>");
-                                 out.print("<a>");
-                                 out.print(companyList.get(i));
-                                 out.print("</a>");
-                                 out.print("</li>");
-                                 out.print("</button>");   
+	                                 out.print("<button type = \"submit\" class=\"interbtn\" name= \"selectCompany\" style=\"height: 40px; width: 340px;\" value = \"");
+	                                 out.print(companyList.get(i));
+	                                 out.print("\">");
+	                                 out.print("<li>");
+	                                 out.print("<a class=\"interbtn\">");
+	                                 out.print(companyList.get(i));
+	                                 out.print("</a>");
+	                                 out.print("</li>");
+	                                 out.print("</button>");   
                                     %>
 							<%
                                        }

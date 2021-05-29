@@ -48,7 +48,7 @@ if (session.getAttribute("ID") == null) {
 			</center>
 			<div>
 				<form id="getMyPage" action="getMyQna" style="display: inline">
-					<button type="button" class="btn_collection">내가 쓴 문의글</button>
+					<button type="submit" class="btn_collection">내가 쓴 문의글</button>
 				</form>
 				<button type="button" class="btn_set"
 					onClick="location.href='setMyPage' ">수정하기</button>

@@ -11,7 +11,7 @@
 		value="${'/StockInsight/jsp/log_in/login.jsp'}" />
 </jsp:include>
 </head>
-<body>
+<body onload='rotate()'>
 
 	<section id="content">
 		<nav>

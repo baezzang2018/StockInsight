@@ -55,7 +55,7 @@ public class UpdateInterest extends HttpServlet {
 		            request.setAttribute("user_index", user_index);
 		            
 		            String stock_index = request.getParameter("stock_index"); 
-		            request.setAttribute("stock_index", stock_index);   
+		            request.setAttribute("stock_index", stock_index);   		                 
 		            
 		            String selectField = request.getParameter("selectField");
 		            request.setAttribute("selectField", selectField);
@@ -73,17 +73,9 @@ public class UpdateInterest extends HttpServlet {
 		            }
 		            
 		            StockDTO stock_list_from_company = StockDAO.getStockListFromStockCompany(conn, selectCompany);
-					StockDTO stock_list_from_index = StockDAO.getStockListFromStockIndex(conn, stock_index);
 
 		    		request.setAttribute("stock_code", stock_list_from_company.getStock_code());
-    	   
-		            String st_stock_index = null;
-		    		
-		    	    st_stock_index = Integer.toString(stock_list_from_company.getStock_index());
-
-		       
-		    		request.setAttribute("selectFuture", stock_list_from_index.getStock_future()); 
-		    				
+		    		request.setAttribute("selectFuture", Integer.toString(stock_list_from_company.getStock_index())); 		
 		            request.setAttribute("interCheck", interCheck); 
 		            
 		            RequestDispatcher view = sc.getRequestDispatcher("/jsp/search_stock/stockDetail.jsp");

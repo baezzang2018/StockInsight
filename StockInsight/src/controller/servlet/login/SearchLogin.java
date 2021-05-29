@@ -48,9 +48,7 @@ public class SearchLogin extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		String input_user_id = request.getParameter("user_id");
-		System.out.println("user_id : "+ input_user_id);
 		String input_user_pwd = request.getParameter("user_pwd");
-		System.out.println("user_pwd : "+ input_user_pwd);
 		
 		String user_index = null; //session index
 		String user_name = null; //session name
@@ -107,6 +105,8 @@ public class SearchLogin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		doGet(request, response);
 	}
 

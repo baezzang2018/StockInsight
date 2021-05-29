@@ -62,10 +62,10 @@ public class DeleteInterest extends HttpServlet {
 		            String selectCompany = request.getParameter("selectCompany");
 		            request.setAttribute("selectCompany", selectCompany);
 		            
-		            Boolean interCheck = StockDAO.interestCheck(conn, del_user_index, del_stock_index); //愿��떖 醫낅ぉ�뿉 �엳�뒗吏� �뾾�뒗吏� 泥댄겕 
+		            Boolean interCheck = StockDAO.interestCheck(conn, del_user_index, del_stock_index); 
 		            
-		            if(interCheck == true) { //愿��떖醫낅ぉ�뿉 �엳�쑝硫� 
-		            	StockDAO.deleteInterest(conn, del_user_index, del_stock_index);// user_id濡� user_index 李얘린 
+		            if(interCheck == true) { 
+		            	StockDAO.deleteInterest(conn, del_user_index, del_stock_index);
 		            	interCheck = false;
 		            }else {
 		            	interCheck = false;
@@ -79,7 +79,7 @@ public class DeleteInterest extends HttpServlet {
 					String st_stock_index = null;
 			        st_stock_index = Integer.toString(stock_list_from_company.getStock_index());
 
-			        request.setAttribute("selectFuture", stock_list_from_index.getStock_future()); 
+			        request.setAttribute("selectFuture", Integer.toString(stock_list_from_index.getStock_future())); 
 			        
 		            request.setAttribute("interCheck", interCheck);
 		            RequestDispatcher view = sc.getRequestDispatcher("/jsp/search_stock/stockDetail.jsp");
