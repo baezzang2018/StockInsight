@@ -14,53 +14,54 @@ import javax.mail.internet.MimeMessage;
 
 public class Mailsystem {
 	
-	// TEXT¸¸ º¸³¾¶§
+	// TEXTë§Œ ë³´ë‚¼ë•Œ
 	public void sendEmail(String from, String to, String subject, String content) throws Exception {
 
-		// Properties ¼³Á¤
-		// ÇÁ·ÎÆÛÆ¼ °ª ÀÎ½ºÅÏ½º »ı¼º°ú ±âº»¼¼¼Ç(SMTP ¼­¹ö È£½ºÆ® ÁöÁ¤)
+		// Properties ì„¤ì •
+		// í”„ë¡œí¼í‹° ê°’ ì¸ìŠ¤í„´ìŠ¤ ìƒì„±ê³¼ ê¸°ë³¸ì„¸ì…˜(SMTP ì„œë²„ í˜¸ìŠ¤íŠ¸ ì§€ì •)
 		Properties props = new Properties();
 
-		// G-Mail SMTP »ç¿ë½Ã
-		props.put("mail.transport.protocol", "smtp");// ÇÁ·ÎÅäÄİ ¼³Á¤
+		// G-Mail SMTP ì‚¬ìš©ì‹œ
+		props.put("mail.transport.protocol", "smtp");// í”„ë¡œí† ì½œ ì„¤ì •
 		
-		props.put("mail.smtp.host", "smtp.gmail.com");// SMTP ¼­ºñ½º ÁÖ¼Ò(È£½ºÆ®) -> Áö¸ŞÀÏÀÌ¶ó¼­,, º¯°æ,,, ÀÌ°É·Î ¾ÈÇÏ¸é 1¹ø ¿À·ù ¹ß»ı
+		props.put("mail.smtp.host", "smtp.gmail.com");// SMTP ì„œë¹„ìŠ¤ ì£¼ì†Œ(í˜¸ìŠ¤íŠ¸) -> ì§€ë©”ì¼ì´ë¼ì„œ,, ë³€ê²½,,, ì´ê±¸ë¡œ ì•ˆí•˜ë©´ 1ë²ˆ ì˜¤ë¥˜ ë°œìƒ
 		
-		//props.put("mail.smtp.host", "smtp.cafe24.com");// SMTP ¼­ºñ½º ÁÖ¼Ò(È£½ºÆ®)
+		//props.put("mail.smtp.host", "smtp.cafe24.com");// SMTP ì„œë¹„ìŠ¤ ì£¼ì†Œ(í˜¸ìŠ¤íŠ¸)
 		
-		props.put("mail.smtp.port", "587");// SMTP ¼­ºñ½º Æ÷Æ® ¼³Á¤
-		// ·Î±×ÀÎ ÇÒ¶§ Transport Layer Security(TLS)¸¦ »ç¿ëÇÒ °ÍÀÎÁö ¼³Á¤
-		// gmail ¿¡¼± tls°¡ ÇÊ¼ö°¡ ¾Æ´Ï¹Ç·Î ÇØµµ ±×¸¸ ¾ÈÇØµµ ±×¸¸
+		props.put("mail.smtp.port", "587");// SMTP ì„œë¹„ìŠ¤ í¬íŠ¸ ì„¤ì •
+		// ë¡œê·¸ì¸ í• ë•Œ Transport Layer Security(TLS)ë¥¼ ì‚¬ìš©í•  ê²ƒì¸ì§€ ì„¤ì •
+		// gmail ì—ì„  tlsê°€ í•„ìˆ˜ê°€ ì•„ë‹ˆë¯€ë¡œ í•´ë„ ê·¸ë§Œ ì•ˆí•´ë„ ê·¸ë§Œ
 		props.put("mail.smtp.starttls.enable", "true");
-		// gmail ÀÎÁõ¿ë Secure Socket Layer(SSL) ¼³Á¤
-		// gmail ¿¡¼­ ÀÎÁõ¶§ »ç¿ëÇØÁÖ¹Ç·Î ¿ä°Ç ¾ÈÇØÁÖ¸é ¾ÈµÊ
+		// gmail ì¸ì¦ìš© Secure Socket Layer(SSL) ì„¤ì •
+		// gmail ì—ì„œ ì¸ì¦ë•Œ ì‚¬ìš©í•´ì£¼ë¯€ë¡œ ìš”ê±´ ì•ˆí•´ì£¼ë©´ ì•ˆë¨
 		props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		// props.put("mail.smtp.user", from);
-		props.put("mail.smtp.auth", "true");// SMTP ÀÎÁõÀ» ¼³Á¤
+		props.put("mail.smtp.auth", "true");// SMTP ì¸ì¦ì„ ì„¤ì •
 
 		/**
-		 * SMTP ÀÎÁõÀÌ ÇÊ¿äÇÑ °æ¿ì ¹İµå½Ã Properties ¿¡ SMTP ÀÎÁõÀ» »ç¿ëÇÑ´Ù°í ¼³Á¤ÇÏ¿©¾ß ÇÑ´Ù. ±×·¸Áö ¾ÊÀ¸¸é ÀÎÁõÀ» ½ÃµµÁ¶Â÷ ÇÏÁö
-		 * ¾Ê´Â´Ù. ±×¸®°í Authenticator Å¬·¡½º¸¦ »ó¼Ó¹ŞÀº SMTPAuthenticator Å¬·¡½º¸¦ »ı¼ºÇÑ´Ù.
-		 * getPasswordAuthentication() ¸Ş¼Òµå¸¸ override ÇÏ¸é µÈ´Ù. ¸Ó »ç½Ç ´Ù¸¥ ¸Ş¼Òµå´Â final ¸Ş¼Òµå¿©¼­
-		 * override ÇÒ ¼ö Á¶Â÷ ¾ø´Ù. -¤µ-;
+		 * SMTP ì¸ì¦ì´ í•„ìš”í•œ ê²½ìš° ë°˜ë“œì‹œ Properties ì— SMTP ì¸ì¦ì„ ì‚¬ìš©í•œë‹¤ê³  ì„¤ì •í•˜ì—¬ì•¼ í•œë‹¤. ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ ì¸ì¦ì„ ì‹œë„ì¡°ì°¨ í•˜ì§€
+		 * ì•ŠëŠ”ë‹¤. ê·¸ë¦¬ê³  Authenticator í´ë˜ìŠ¤ë¥¼ ìƒì†ë°›ì€ SMTPAuthenticator í´ë˜ìŠ¤ë¥¼ ìƒì„±í•œë‹¤.
+		 * getPasswordAuthentication() ë©”ì†Œë“œë§Œ override í•˜ë©´ ëœë‹¤. ë¨¸ ì‚¬ì‹¤ ë‹¤ë¥¸ ë©”ì†Œë“œëŠ” final ë©”ì†Œë“œì—¬ì„œ
+		 * override í•  ìˆ˜ ì¡°ì°¨ ì—†ë‹¤. -ã……-;
 		 */
+		
 		Authenticator auth = new SMTPAuthenticator();
-		//Session mailSession = Session.getDefaultInstance(props, auth); 2¹ø¿À·ù·Î ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤ÇÔ kjh
+		//Session mailSession = Session.getDefaultInstance(props, auth); 2ë²ˆì˜¤ë¥˜ë¡œ ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì •í•¨ kjh
 		Session mailSession = Session.getInstance(props, auth); 
 		
 		// create a message
 		Message msg = new MimeMessage(mailSession);
 
 		// set the from and to address
-		msg.setFrom(new InternetAddress(from));// º¸³»´Â »ç¶÷ ¼³Á¤
-		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to, false));// ¹Ş´Â »ç¶÷¼³Á¤
+		msg.setFrom(new InternetAddress(from));// ë³´ë‚´ëŠ” ì‚¬ëŒ ì„¤ì •
+		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to, false));// ë°›ëŠ” ì‚¬ëŒì„¤ì •
 
 		// Setting the Subject and Content Type
-		msg.setSubject(subject); // Á¦¸ñ ¼³Á¤
-		msg.setSentDate(new Date());// º¸³»´Â ³¯Â¥ ¼³Á¤
-		msg.setText(content); // ³»¿ë ¼³Á¤
+		msg.setSubject(subject); // ì œëª© ì„¤ì •
+		msg.setSentDate(new Date());// ë³´ë‚´ëŠ” ë‚ ì§œ ì„¤ì •
+		msg.setText(content); // ë‚´ìš© ì„¤ì •
 
-		Transport.send(msg); // ¸ŞÀÏ º¸³»±â
+		Transport.send(msg); // ë©”ì¼ ë³´ë‚´ê¸°
 	}
 
 }

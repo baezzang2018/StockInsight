@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.mail.MessagingException;
 import javax.servlet.ServletContext;
@@ -21,113 +19,114 @@ import model.bean.DAO.LoginDAO;
 import model.bean.DTO.Mailsystem;
 
 /**
- * Servlet implementation class DoFindPwd
+ * Servlet implementation class SearchFindPwd
  */
 @WebServlet("/searchFindPwd")
 public class SearchFindPwd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public SearchFindPwd() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SearchFindPwd() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
 
-		PrintWriter out = response.getWriter();
+        PrintWriter out = response.getWriter();
 
-		//email
-		final String from = "baezzang2018@gmail.com"; // º¸³»´Â »ç¶÷               
+        //email
+        final String from = "baezzang2018@gmail.com";              
 
-		String name = request.getParameter("user_name");
-		String id = request.getParameter("user_id");
-		String email = request.getParameter("user_email");	
+        String name = request.getParameter("user_name");
+        String id = request.getParameter("user_id");
+        String email = request.getParameter("user_email");   
 
-		ServletContext sc = getServletContext();
-		Connection conn = (Connection) sc.getAttribute("DBconnection");
+        ServletContext sc = getServletContext();
+        Connection conn = (Connection) sc.getAttribute("DBconnection");
 
-		ResultSet rs = LoginDAO.findPWD(conn, name, id, email);
-		String checkpwd = null;
+        ResultSet rs = LoginDAO.findPWD(conn, name, id, email);
+        String checkpwd = null;
 
-		if(rs != null) {
-			try
-			{
-				if(rs.next()) { // existing user
-					  int random = (int)(Math.random() * (999999 - 100000 + 1)) + 100000; // 6ÀÚ¸® ·£´ı°ª
-		               String random_pwd = Integer.toString(random);
+        if(rs != null) {
+           try
+           {
+              if(rs.next()) { // existing user
+                   int random = (int)(Math.random() * (999999 - 100000 + 1)) + 100000; // six random
+                       String random_pwd = Integer.toString(random);
 
-		               final String to = email;  
+                       final String to = email;  
 
-		               String subject = "StockInsight ÀÓ½Ã ºñ¹Ğ¹øÈ£ÀÔ´Ï´Ù.";// Á¦¸ñ
-		               String content = "¾È³çÇÏ¼¼¿ä. StockkInsightÀÔ´Ï´Ù.\n"+ name +" ´ÔÀÇ ÀÓ½Ã ºñ¹Ğ¹øÈ£´Â " + random_pwd + "ÀÔ´Ï´Ù.\n\nÇØ´ç ÀÓ½Ãºñ¹Ğ¹øÈ£·Î ·Î±×ÀÎ ÈÄ ¸¶ÀÌÆäÀÌÁö¿¡¼­ ºñ¹Ğ¹øÈ£¸¦ º¯°æ ÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.\n°¨»çÇÕ´Ï´Ù.";// ³»¿ë
+                       String subject = "StockInsight ì„ì‹œ ë¹„ë°€ë²ˆí˜¸ ì…ë‹ˆë‹¤.";// title
+                       String content = "ì•ˆë…•í•˜ì„¸ìš”. StockkInsightì…ë‹ˆë‹¤.\n"+ name +" ë‹˜ì˜ ì„ì‹œ ë¹„ë°€ë²ˆí˜¸ëŠ” " + random_pwd + "ì…ë‹ˆë‹¤.\n\ní•´ë‹¹ ì„ì‹œë¹„ë°€ë²ˆí˜¸ë¡œ ë¡œê·¸ì¸ í›„ ë§ˆì´í˜ì´ì§€ì—ì„œ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë³€ê²½ í•´ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.\nê°ì‚¬í•©ë‹ˆë‹¤.";// content
 
-					if (from.trim().equals("")) {
-						System.out.println("º¸³»´Â »ç¶÷ÀÌ ¾ø½À´Ï´Ù.");
-					}
-					else if (to.trim().equals("")) {
-						System.out.println("¹Ş´Â »ç¶÷ÀÌ ¾ø½À´Ï´Ù.");
-					} 
-					else {
-						try {
-							Mailsystem mt = new Mailsystem();
- 
-					         // ÀÌ¸ŞÀÏ º¸³»±â
-		                     mt.sendEmail(from, to, subject, content);                     
+                      
+                 if (from.trim().equals("")) {
+                    System.out.println("ë³´ë‚´ëŠ” ì‚¬ëŒì´ ì—†ìŠµë‹ˆë‹¤.");
+                 }
+                 else if (to.trim().equals("")) {
+                    System.out.println("ë°›ëŠ” ì‚¬ëŒì´ ì—†ìŠµë‹ˆë‹¤.");
+                 } 
+                 else {
+                    try {
+                       Mailsystem mt = new Mailsystem();
+   
+                          // ì´ë©”ì¼ ë³´ë‚´ê¸°
+                             mt.sendEmail(from, to, subject, content);                     
 
-		                     // user µğºñ ºñ¹ø ¾÷µ¥ÀÌÆ®
-		                     LoginDAO.updatePWD(conn, id, random_pwd);
+                             // user ë””ë¹„ ë¹„ë²ˆ ì—…ë°ì´íŠ¸
+                             LoginDAO.updatePWD(conn, id, random_pwd);
 
-							 out.println("<script language='javascript'>");
-		                     out.println("alert('ÀÌ¸ŞÀÏ·Î ÀÓ½Ã ºñ¹Ğ¹øÈ£¸¦ º¸³Â½À´Ï´Ù.\\nÈ®ÀÎºÎÅ¹µå¸³´Ï´Ù.');");
-		                     out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");            
-		                     out.println("</script>");
-		                     out.flush();
-		                     
-		                  } catch (MessagingException me) {
-		                     out.println("<script language='javascript'>");
-		                     out.println("alert('³×Æ®¿öÅ©°¡ ºÒ¾ÈÁ¤ÇÕ´Ï´Ù. Àá½Ã ÈÄ ´Ù½Ã ½ÃµµÇØÁÖ¼¼¿ä.');");
-		                     out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");            
-		                     out.println("</script>");
-		                     out.flush();
-		                  } catch (Exception e) {
-		                     out.println("<script language='javascript'>");
-		                     out.println("alert('°¡ÀÔµÈ ÀÌ¸ŞÀÏÀÌ À¯È¿ÇÏÁö ¾Ê½À´Ï´Ù.');");
-		                     out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");            
-		                     out.println("</script>");
-		                     out.flush();
-		                  }
-					}
+                        out.println("<script language='javascript'>");
+                             out.println("alert('ì´ë©”ì¼ë¡œ ì„ì‹œ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë³´ëƒˆìŠµë‹ˆë‹¤.\\ní™•ì¸ë¶€íƒë“œë¦½ë‹ˆë‹¤.');");
+                             out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");            
+                             out.println("</script>");
+                             out.flush();
+                             
+                          } catch (MessagingException me) {
+                             out.println("<script language='javascript'>");
+                             out.println("alert('ë„¤íŠ¸ì›Œí¬ê°€ ë¶ˆì•ˆì •í•©ë‹ˆë‹¤. ì ì‹œ í›„ ë‹¤ì‹œ ì‹œë„í•´ì£¼ì„¸ìš”.');");
+                             out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");            
+                             out.println("</script>");
+                             out.flush();
+                          } catch (Exception e) {
+                             out.println("<script language='javascript'>");
+                             out.println("alert('ê°€ì…ëœ ì´ë©”ì¼ì´ ìœ íš¨í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.');");
+                             out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");            
+                             out.println("</script>");
+                             out.flush();
+                          }
+                 }
 
-				}
-				else {
-					out.println("<script language='javascript'>");
-					out.println("alert('°¡ÀÔµÈ Á¤º¸°¡ ¾ø½À´Ï´Ù.');");
-					out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");				
-					out.println("</script>");
-					out.flush();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} 
-		}
-	}
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.setCharacterEncoding("UTF-8");
-		request.setCharacterEncoding("UTF-8");
-		doGet(request, response);
-	}
+              }
+              else {
+                 out.println("<script language='javascript'>");
+                 out.println("alert('ê°€ì…ëœ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.');");
+                 out.println("document.location.href=\"/StockInsight/jsp/log_in/login.jsp\" ;");            
+                 out.println("</script>");
+                 out.flush();
+              }
+           } catch (SQLException e) {
+              e.printStackTrace();
+           } 
+        }
+     }
+     /**
+      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+      */
+     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        doGet(request, response);
+     }
 
-}
+  }
