@@ -64,8 +64,8 @@ public class WriteQuestion extends HttpServlet {
 			int uidx =  Integer.parseInt((String)session.getAttribute("INDEX"));
 			String name = (String)session.getAttribute("ID");
 			
-			String questionIndex = QnaDAO.getAutoIncrement(conn, "Question");
-			int number = QnaDAO.addQuestion(conn, uidx, title, content, date);
+			String questionIndex = (Integer.parseInt(QnaDAO.getMaxIndex(conn, "Question", "ques_index"))+1)+"";
+			int number = QnaDAO.addQuestion(conn, uidx, title, content, date, questionIndex);
 			Boolean admin = QnaDAO.checkAdmin(conn, uidx);
 			if (number!=-1) {
 				// 작성한 post 넘기기

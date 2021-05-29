@@ -15,7 +15,7 @@ if (session.getAttribute("ID") == null) {
 %>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 <title>Stock Insight</title>
-<link rel="stylesheet" type="text/css" href="css/qna.css" />
+<link rel="stylesheet" type="text/css" href="/StockInsight/css/qna.css" />
 
 <jsp:include page="/jsp/header.jsp" flush="false">
 	<jsp:param name="currentPage"
@@ -69,7 +69,7 @@ if (session.getAttribute("ID") == null) {
 
 
 									<tr>
-										<td colspan="2" class="button_table"><a href="/StockInsight/getPost?pageIndex=1"
+										<td colspan="2" class="button_table"><a href="/StockInsight/getQnaList?pageIndex=1"
 											class="btn_question_list">목록가기
 												</button>
 										</a> <input type="submit" class="btn_question_submit" value="등록하기">
