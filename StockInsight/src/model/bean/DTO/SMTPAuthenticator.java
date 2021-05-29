@@ -4,9 +4,10 @@ import javax.mail.PasswordAuthentication;
 
 
 public class SMTPAuthenticator extends Authenticator{
+	
 	   protected PasswordAuthentication getPasswordAuthentication() {
-	      final String username = "baezzang2018@gmail.com"; // gmail »ç¿ëÀÚ;
-	      final String password = "baebaezzang!"; // ÆĞ½º¿öµå;
+	      final String username = "baezzang2018@gmail.com"; // gmail ì‚¬ìš©ì;
+	      final String password = "baebaezzang!"; // íŒ¨ìŠ¤ì›Œë“œ;
 	      return new PasswordAuthentication(username, password);
 	   }
 
