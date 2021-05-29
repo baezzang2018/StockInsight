@@ -66,7 +66,7 @@
                   		
                   		//글제목 click 시 해당 글 조회
                   		out.print("<td><a href=\"/StockInsight/getPost?"+value+"\">"+postList.get(i).getTitle()+"</a></td>");
-                  		out.print("<td>"+postList.get(i).getWriter()+"</td>");
+                  		out.print("<td>"+postList.get(i).getWriterName()+"</td>");
                   		out.print("<td>"+postList.get(i).getDate()+"</td>");
                   	}
                   %>
